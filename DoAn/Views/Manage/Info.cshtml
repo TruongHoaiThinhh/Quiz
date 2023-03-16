@@ -1,0 +1,1080 @@
+﻿
+@{
+    ViewBag.Title = "Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model DoAn.Models.IndexViewModel
+
+@{
+    ViewBag.Title = "Info";
+}
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<h2></h2>
+<style>
+    .gray {
+        background: #f7f8f9;
+    }
+
+    .pt-4 {
+        padding-top: 1.5rem !important;
+    }
+
+    section {
+        padding: 50px 0 50px;
+        position: relative;
+    }
+
+    .container-fluid {
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+        padding-right: 15px;
+        padding-left: 15px;
+        width: 100%;
+    }
+
+    .row {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    .col-lg-3 {
+        -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+
+    .dashboard-navbar, .dashboard-wraper {
+        position: relative;
+        width: 100%;
+        padding: 2em 0rem;
+        background: #ffffff;
+        border-radius: 0.2rem;
+    }
+
+    .d-user-avater {
+        text-align: center;
+        margin: 2em 0;
+        padding: 0 1rem;
+    }
+
+    .user-avater {
+        position: relative;
+        cursor: pointer;
+    }
+
+    .d-user-avater img {
+        max-width: 120px;
+        border-radius: 50%;
+        margin-bottom: 8px;
+    }
+
+    .img-fluid {
+        width: 100%;
+    }
+
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+
+    img {
+        vertical-align: middle;
+        border-style: none;
+    }
+
+    .user-avater .fas.fa-camera {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        font-size: 28px;
+        cursor: pointer;
+        opacity: .5;
+        transition: all .5s;
+    }
+
+    .fa, .fas {
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+    }
+
+    .fa, .fab, .fal, .far, .fas {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+    }
+
+    .fa-camera:before {
+        content: "\f030";
+    }
+
+    *, ::after, ::before {
+        box-sizing: inherit;
+    }
+
+    #change-avatar-input {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    button, input {
+        overflow: visible;
+    }
+
+    button, input, optgroup, select, textarea {
+        margin: 0;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+    }
+
+    [role=button], a, area, button, input, label, select, summary, textarea {
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+    }
+
+    .d-user-avater h4 {
+        margin: 10px 0 3px 0;
+        font-size: 17px;
+    }
+
+    h4 {
+        line-height: 2.6rem;
+        font-size: 2.1rem;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: #333d46;
+        font-weight: 600;
+        text-transform: capitalize;
+        font-family: var(--font-main);
+    }
+
+    .elso_syu89 ul li {
+        display: inline-block;
+        padding: 0 4px;
+        list-style: none;
+    }
+
+    .elso_syu89 ul li {
+        padding: 0 2px;
+    }
+
+    li {
+        display: list-item;
+        text-align: -webkit-match-parent;
+    }
+
+    .elso_syu89 ul li > a {
+        width: 38px;
+        height: 38px;
+        border-radius: 4px;
+        color: #738090 !important;
+        border: 1px solid #e7ebef;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    [role=button], a, area, button, input, label, select, summary, textarea {
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+    }
+
+    .d-navigation {
+        position: relative;
+        padding: 0 1rem;
+    }
+
+        .d-navigation ul {
+            padding: 0;
+            margin: 0;
+        }
+
+    p, ul, ol, dl, dt, dd, blockquote, address {
+        margin: 0 0 10px;
+    }
+
+    ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    dl, ol, ul {
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+
+    .d-navigation ul li {
+        list-style: none;
+        padding: 0;
+    }
+
+
+        .d-navigation ul li a {
+            padding: 12px 5px;
+            font-size: 1.3rem;
+        }
+
+        .d-navigation ul li a {
+            width: 100%;
+        }
+
+        .d-navigation ul li a {
+            padding: 3px 0;
+            color: #144273;
+            font-size: 13px;
+            border-radius: 0.3rem;
+            padding: 14px 15px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+    a {
+        color: #30384e;
+        text-decoration: none;
+        background-color: transparent;
+        -webkit-text-decoration-skip: objects;
+    }
+
+    .d-navigation ul li a i {
+        margin-right: 5px;
+    }
+
+    .fa, .fas {
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+    }
+
+    .fa-th:before {
+        content: "\f00a";
+    }
+
+    .d-navigation ul li {
+        list-style: none;
+        padding: 0;
+    }
+
+    .dropdown, .dropup {
+        position: relative;
+    }
+
+    d-navigation ul li a {
+        padding: 12px 5px;
+        font-size: 1.3rem;
+    }
+
+    .d-navigation ul li a {
+        padding: 3px 0;
+        color: #144273;
+        font-size: 13px;
+        border-radius: 0.3rem;
+        padding: 14px 15px;
+        font-weight: 600;
+        display: inline-block;
+    }
+
+    ul.nav.nav-second-level.collapse {
+        display: none;
+    }
+
+    .d-navigation ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .d-navigation ul li {
+        list-style: none;
+        padding: 0;
+    }
+
+    .nav-second-level li {
+        display: block;
+        width: 100%;
+    }
+
+    .d-navigation ul li a {
+        padding: 12px 5px;
+        font-size: 1.3rem;
+    }
+
+    .d-navigation ul li a {
+        width: 100%;
+    }
+
+    .d-navigation ul li a {
+        padding: 3px 0;
+        color: #144273;
+        font-size: 13px;
+        border-radius: 0.3rem;
+        padding: 14px 15px;
+        font-weight: 600;
+        display: inline-block;
+    }
+
+    .nav-second-level li a {
+        color: #787e94 !important;
+    }
+
+    .d-navigation ul li a i {
+        margin-right: 5px;
+    }
+
+    .col-lg-9 {
+        -ms-flex: 0 0 75%;
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+
+    .row {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    .col-lg-6 {
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .dashboard_wrap {
+        padding: 1rem 1rem;
+        background-color: #ffffff;
+        border-radius: 10px;
+        width: 90%;
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .justify-content-center {
+        -ms-flex-pack: center !important;
+        justify-content: center !important;
+    }
+
+    .col-lg-12 {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .d-navigation ul li {
+        list-style: none;
+        padding: 0;
+    }
+
+    .dropdown, .dropup {
+        position: relative;
+    }
+
+    .d-navigation ul li a {
+        padding: 12px 5px;
+        font-size: 1.3rem;
+    }
+
+
+    .d-navigation ul li a {
+        width: 100%;
+    }
+
+    .d-navigation ul li a {
+        padding: 3px 0;
+        color: #144273;
+        font-size: 13px;
+        border-radius: 0.3rem;
+        padding: 14px 15px;
+        font-weight: 600;
+        display: inline-block;
+    }
+
+        .d-navigation ul li a i {
+            margin-right: 5px;
+        }
+
+    .fa, .fas {
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+    }
+
+    .fa, .fab, .fal, .far, .fas {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+    }
+
+    .d-navigation ul li a span {
+        font-size: 12px;
+        float: right;
+        top: 5px;
+        position: relative;
+    }
+
+    [class*=" ti-"], [class^=ti-] {
+        font-family: themify;
+        speak: none;
+        font-style: normal;
+        font-weight: 400;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .ti-angle-left:before {
+        content: "\e64a";
+    }
+
+    *, ::after, ::before {
+        box-sizing: inherit;
+    }
+
+    ul.nav.nav-second-level.collapse {
+        display: none;
+    }
+
+    .d-navigation ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    #change-avatar-input {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .ti-facebook:before {
+        content: "\e741";
+    }
+
+    .ti-twitter:before {
+        content: "\e72a";
+    }
+
+    .ti-linkedin:before {
+        content: "\e735";
+    }
+
+    ul.nav.nav-second-level.collapse.show {
+        display: block;
+    }
+
+    ul.nav.nav-second-level.collapse {
+        display: none;
+    }
+
+    .collapse.show {
+        display: block;
+    }
+
+    .d-navigation ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .elso_syu89 ul li > a {
+        width: 38px;
+        height: 38px;
+        border-radius: 4px;
+        color: #738090 !important;
+        border: 1px solid #e7ebef;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    a.link:hover, a.link:focus, a:hover, a:focus {
+        color: var(--color-main);
+    }
+
+    a:hover, a:focus {
+        text-decoration: none;
+    }
+
+    div {
+        flex: 50;
+        display: block;
+    }
+
+    .row {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    * {
+        outline: none;
+    }
+
+    *, ::after, ::before {
+        box-sizing: inherit;
+    }
+
+    .col-md-12 {
+        -ms-flex: 0 0 100%;
+        flex: inherit;
+        max-width: 100%;
+    }
+
+    .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .dashboard_wrap {
+        padding: 1rem 1rem;
+        background-color: #ffffff;
+        border-radius: 10px;
+        width: 100%;
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .row {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    .mb-4 {
+        margin-bottom: 1.5rem !important;
+    }
+
+    .col-md-12 {
+        -ms-flex: 0 0 100%;
+        flex: inherit;
+        max-width: 100%;
+    }
+
+    .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .m-0 {
+        margin: 0 !important;
+    }
+
+    h6 {
+        line-height: 2rem;
+        font-size: 1.6rem;
+    }
+
+    h5, h6 {
+        color: #333d46;
+        font-weight: 500;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: #333d46;
+        font-weight: 600;
+        text-transform: capitalize;
+        font-family: var(--font-main);
+    }
+
+    .h6, h6 {
+        font-size: 1rem;
+    }
+
+    .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+        margin-bottom: 0.5rem;
+        font-family: inherit;
+        font-weight: 500;
+        line-height: 1.1;
+        color: inherit;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    * {
+        outline: none;
+    }
+
+    *, ::after, ::before {
+        box-sizing: inherit;
+    }
+
+    user agent stylesheet
+    h6 {
+        display: block;
+        font-size: 0.67em;
+        margin-block-start: 2.33em;
+        margin-block-end: 2.33em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        font-weight: bold;
+    }
+
+    .mb-4 {
+        margin-bottom: 1.5rem !important;
+    }
+
+    .col-md-12 {
+        -ms-flex: 0 0 100%;
+        flex: inherit;
+        max-width: 100%;
+    }
+
+    .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .row {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    .justify-content-center {
+        -ms-flex-pack: center !important;
+        justify-content: center !important;
+    }
+
+    .row {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+        .form-group label {
+            font-size: 1.3rem;
+            font-weight: 600;
+            opacity: 0.8;
+        }
+
+    label {
+        display: inline-block;
+        margin-bottom: 0.5rem;
+    }
+
+    [role=button], a, area, button, input, label, select, summary, textarea {
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+    }
+
+    .smalls .form-control {
+        height: 42px;
+    }
+
+    .form-control {
+        height: 54px;
+        padding-left: 15px;
+        margin: 0 !important;
+        box-shadow: none !important;
+        background: #ffffff;
+        border: 1px solid #e6ebf5;
+        color: #707e9c;
+        font-size: 1.5rem;
+        border-radius: 4px;
+    }
+
+    .form-control {
+        display: block;
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        font-size: 1.5rem;
+        line-height: 1.25;
+        color: #495057;
+        background-color: #fff;
+        background-image: none;
+        background-clip: padding-box;
+        border: 1px solid rgba(0,0,0,.15);
+        border-radius: 0.25rem;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+
+    button, input {
+        overflow: visible;
+    }
+
+    button, input, optgroup, select, textarea {
+        margin: 0;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+    }
+
+    [role=button], a, area, button, input, label, select, summary, textarea {
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .m-0 {
+        margin: 0 !important;
+    }
+
+    h6 {
+        line-height: 2rem;
+        font-size: 1.6rem;
+    }
+
+    h5, h6 {
+        color: #333d46;
+        font-weight: 500;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: #333d46;
+        font-weight: 600;
+        text-transform: capitalize;
+        font-family: var(--font-main);
+    }
+
+    .h6, h6 {
+        font-size: 1.9rem;
+    }
+
+    .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+        margin-bottom: 0.5rem;
+        font-family: inherit;
+        font-weight: 500;
+        line-height: 1.1;
+        color: inherit;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    .mb-4 {
+        margin-bottom: 1.5rem !important;
+    }
+
+    .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .row {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    .btn {
+        border: none;
+        box-shadow: none;
+        border-radius: 4px;
+        font-family: var(--font-main);
+        font-size: 1.4rem;
+        background-color: darkorange;
+    }
+
+
+    .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .theme-bg {
+        background: #f26c4f;
+    }
+
+    .btn {
+        border: none;
+        box-shadow: none;
+        border-radius: 4px;
+        font-size: 1.4rem;
+    }
+</style>
+
+
+
+
+<section class="gray pt-4">
+    <div class="container-fluid">
+
+        <div class="row" style="margin-top: 80px">
+
+            <div class="col-lg-3 col-md-3">
+                <div class="dashboard-navbar">
+                    <div class="d-user-avater">
+                        <div class="user-avater">
+                            <img src="https://tracnghiemhay.com/user_avatar/6346c8278b53f.jpg" class="img-fluid avater" alt="">
+                            <i class="fas fa-camera"></i>
+                            <input type="file" name="change-avatar-input" id="change-avatar-input">
+                        </div>
+                        <h4>Thịnh Trương</h4>
+                        <div class="elso_syu89">
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="d-navigation">
+                        <ul id="side-menu">
+
+                            <li class="">
+                                <a href="https://localhost:44307/Manage">
+                                    <i class="fas fa-th"></i>
+                                    Trang chủ
+                                </a>
+                            </li>
+
+
+                            <li class="">
+                                <a href="https://localhost:44307/Manage/Info">
+                                    <i class="fas fa-address-card"></i>
+                                    Thông tin của tôi
+                                    <!--<span class="fas fa-angle-left"></span> -->
+                                </a>
+                            </li>
+
+
+                            <li class="">
+                                <a href="https://localhost:44307/Manage/ChangePassword">
+                                    <i class="fa fa-shield-alt"></i>
+                                    Bảo mật
+                                    <!--<span class="fas fa-angle-left"></span> -->
+                                </a>
+                            </li>
+
+
+                            <li class="">
+                                <a href="https://localhost:44307/Manage/History">
+                                    <i class="fas fa-archive"></i>
+                                    Danh sách bài thi
+                                    <!--<span class="fas fa-angle-left"></span> -->
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+            <div class="col-xl-5 col-lg-6 col-md-12">
+                <div class="dashboard_wrap">
+
+                    <div class="row justify-content-center">
+                        <div class="col-xl-12 col-lg-12 col-md-12">
+                            <div class="row">
+                                <div class="col-xl-7 col-lg-6 col-md-12">
+                                    <div class="dashboard_wrap">
+
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 mb-4">
+                                                <h6 class="m-0">Thông tin cá nhân</h6>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-xl-12 col-lg-12 col-md-12">
+                                                <form action="" method="post" id="info-form">
+                                                    <div class="form-group smalls">
+                                                        <label for="fullname" class="required">Tên hiển thị*</label>
+
+                                                        <input type="text" name="fullname" id="fullname" value="Thịnh Trương" class="form-control" placeholder="Họ và tên">
+                                                    </div>
+                                                    <div class="form-group smalls">
+                                                        <label for="birthday" class="required">Ngày sinh*</label>
+
+                                                        <input type="text" name="birthday" id="birthday" value="" class="form-control" placeholder="Ngày sinh">
+                                                    </div>
+                                                    <div class="form-group smalls">
+                                                        <label for="sex" class="optional">Giới tính</label>
+                                                        <div class="simple-input">
+
+                                                            <select name="sex" id="sex" class="form-control">
+                                                                <option value="" label="" selected></option>
+                                                                <option value="1" label="Nam">Nam</option>
+                                                                <option value="2" label="Nữ">Nữ</option>
+                                                                <option value="3" label="Không xác định">Không xác định</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group smalls">
+                                                        <label for="fullname" class="required">Số điện thoại*</label>
+
+                                                        <input type="text" name="fullname" id="fullname" value="" class="form-control" placeholder="Số điện thoại">
+                                                    </div>
+                                                    <div class="form-group smalls">
+                                                        <label for="fullname" class="required">Email*</label>
+
+                                                        <input type="text" name="fullname" id="fullname" value="a@gmail.com" class="form-control" placeholder="Email">
+                                                    </div>
+                                                    <div class="form-group smalls">
+                                                        <label for="fullname" class="required">Địa chỉ*</label>
+
+                                                        <input type="text" name="fullname" id="fullname" value="" class="form-control" placeholder="Địa chỉ">
+                                                    </div>
+                                                    <div class="form-group smalls">
+
+                                                        <input type="hidden" name="state" value="info" id="info_state">							<button class="btn theme-bg text-white" type="submit">Lưu thay đổi</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-5 col-lg-6 col-md-12">
+                                    <div class="dashboard_wrap" style="margin-top:34px">
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-xl-12 col-lg-12 col-md-12">
+                                                <form action="" method="post" id="social-form">
+
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="form-group smalls">
+                                                <label for="facebook" class="optional">Facebook Link</label>
+
+                                                <input type="text" name="facebook" id="facebook" value="" class="form-control" placeholder="Facebook Link">
+                                            </div>
+                                            <div class="form-group smalls">
+                                                <label for="twitter" class="optional">Twitter Link</label>
+
+                                                <input type="text" name="twitter" id="twitter" value="" class="form-control" placeholder="Twitter Link">
+                                            </div>
+                                            <div class="form-group smalls">
+                                                <label for="linkedIn" class="optional">LinkedIn Link</label>
+
+                                                <input type="text" name="linkedIn" id="linkedIn" value="" class="form-control" placeholder="LinkedIn Link">
+                                            </div>
+                                            <div class="form-group smalls">
+
+                                                <input type="hidden" name="state" value="social" id="social_state">							<button class="btn theme-bg text-white" type="submit">Lưu thay đổi</button>
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+</section>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

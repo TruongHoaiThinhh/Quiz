@@ -1,0 +1,696 @@
+﻿
+@{
+    ViewBag.Title = "History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<h2></h2>
+<style>
+    .theme-bg {
+        background: #f26c4f !important;
+    }
+
+
+    .gray {
+        background: #f7f8f9;
+    }
+
+    .pt-4 {
+        padding-top: 1.5rem !important;
+    }
+
+    section {
+        padding: 50px 0 50px;
+        position: relative;
+    }
+
+    .container-fluid {
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+        padding-right: 15px;
+        padding-left: 15px;
+        width: 100%;
+    }
+
+    .row {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    .col-lg-3 {
+        -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+
+    .dashboard-navbar, .dashboard-wraper {
+        position: relative;
+        width: 100%;
+        padding: 2em 0rem;
+        background: #ffffff;
+        border-radius: 0.2rem;
+    }
+
+    .d-user-avater {
+        text-align: center;
+        margin: 2em 0;
+        padding: 0 1rem;
+    }
+
+    .user-avater {
+        position: relative;
+        cursor: pointer;
+    }
+
+    .d-user-avater img {
+        max-width: 120px;
+        border-radius: 50%;
+        margin-bottom: 8px;
+    }
+
+    .img-fluid {
+        width: 100%;
+    }
+
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+
+    img {
+        vertical-align: middle;
+        border-style: none;
+    }
+
+    .user-avater .fas.fa-camera {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        font-size: 28px;
+        cursor: pointer;
+        opacity: .5;
+        transition: all .5s;
+    }
+
+    .fa, .fas {
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+    }
+
+    .fa, .fab, .fal, .far, .fas {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+    }
+
+    .fa-camera:before {
+        content: "\f030";
+    }
+
+    *, ::after, ::before {
+        box-sizing: inherit;
+    }
+
+    #change-avatar-input {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    button, input {
+        overflow: visible;
+    }
+
+    button, input, optgroup, select, textarea {
+        margin: 0;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+    }
+
+    [role=button], a, area, button, input, label, select, summary, textarea {
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+    }
+
+    .d-user-avater h4 {
+        margin: 10px 0 3px 0;
+        font-size: 17px;
+    }
+
+    h4 {
+        line-height: 2.6rem;
+        font-size: 2.1rem;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: #333d46;
+        font-weight: 600;
+        text-transform: capitalize;
+        font-family: var(--font-main);
+    }
+
+    .elso_syu89 ul li {
+        display: inline-block;
+        padding: 0 4px;
+        list-style: none;
+    }
+
+    .elso_syu89 ul li {
+        padding: 0 2px;
+    }
+
+    li {
+        display: list-item;
+        text-align: -webkit-match-parent;
+    }
+
+    .elso_syu89 ul li > a {
+        width: 38px;
+        height: 38px;
+        border-radius: 4px;
+        color: #738090 !important;
+        border: 1px solid #e7ebef;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    [role=button], a, area, button, input, label, select, summary, textarea {
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+    }
+
+    .d-navigation {
+        position: relative;
+        padding: 0 1rem;
+    }
+
+        .d-navigation ul {
+            padding: 0;
+            margin: 0;
+        }
+
+    p, ul, ol, dl, dt, dd, blockquote, address {
+        margin: 0 0 10px;
+    }
+
+    ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    dl, ol, ul {
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+
+    .d-navigation ul li {
+        list-style: none;
+        padding: 0;
+    }
+
+
+        .d-navigation ul li a {
+            padding: 12px 5px;
+            font-size: 1.3rem;
+        }
+
+        .d-navigation ul li a {
+            width: 100%;
+        }
+
+        .d-navigation ul li a {
+            padding: 3px 0;
+            color: #144273;
+            font-size: 13px;
+            border-radius: 0.3rem;
+            padding: 14px 15px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+    a {
+        color: #30384e;
+        text-decoration: none;
+        background-color: transparent;
+        -webkit-text-decoration-skip: objects;
+    }
+
+    .d-navigation ul li a i {
+        margin-right: 5px;
+    }
+
+    .fa, .fas {
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+    }
+
+    .fa-th:before {
+        content: "\f00a";
+    }
+
+    .d-navigation ul li {
+        list-style: none;
+        padding: 0;
+    }
+
+    .dropdown, .dropup {
+        position: relative;
+    }
+
+    d-navigation ul li a {
+        padding: 12px 5px;
+        font-size: 1.3rem;
+    }
+
+    .d-navigation ul li a {
+        padding: 3px 0;
+        color: #144273;
+        font-size: 13px;
+        border-radius: 0.3rem;
+        padding: 14px 15px;
+        font-weight: 600;
+        display: inline-block;
+    }
+
+    ul.nav.nav-second-level.collapse {
+        display: none;
+    }
+
+    .d-navigation ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .d-navigation ul li {
+        list-style: none;
+        padding: 0;
+    }
+
+    .nav-second-level li {
+        display: block;
+        width: 100%;
+    }
+
+    .d-navigation ul li a {
+        padding: 12px 5px;
+        font-size: 1.3rem;
+    }
+
+    .d-navigation ul li a {
+        width: 100%;
+    }
+
+    .d-navigation ul li a {
+        padding: 3px 0;
+        color: #144273;
+        font-size: 13px;
+        border-radius: 0.3rem;
+        padding: 14px 15px;
+        font-weight: 600;
+        display: inline-block;
+    }
+
+    .nav-second-level li a {
+        color: #787e94 !important;
+    }
+
+    .d-navigation ul li a i {
+        margin-right: 5px;
+    }
+
+    .col-lg-9 {
+        -ms-flex: 0 0 75%;
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+
+    .row {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    .col-lg-6 {
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .dashboard_wrap {
+        padding: 1rem 1rem;
+        background-color: #ffffff;
+        border-radius: 10px;
+        width: 130%;
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .justify-content-center {
+        -ms-flex-pack: center !important;
+        justify-content: center !important;
+    }
+
+    .col-lg-12 {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .d-navigation ul li {
+        list-style: none;
+        padding: 0;
+    }
+
+    .dropdown, .dropup {
+        position: relative;
+    }
+
+    .d-navigation ul li a {
+        padding: 12px 5px;
+        font-size: 1.3rem;
+    }
+
+
+    .d-navigation ul li a {
+        width: 100%;
+    }
+
+    .d-navigation ul li a {
+        padding: 3px 0;
+        color: #144273;
+        font-size: 13px;
+        border-radius: 0.3rem;
+        padding: 14px 15px;
+        font-weight: 600;
+        display: inline-block;
+    }
+
+        .d-navigation ul li a i {
+            margin-right: 5px;
+        }
+
+    .fa, .fas {
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+    }
+
+    .fa, .fab, .fal, .far, .fas {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+    }
+
+    .d-navigation ul li a span {
+        font-size: 12px;
+        float: right;
+        top: 5px;
+        position: relative;
+    }
+
+    [class*=" ti-"], [class^=ti-] {
+        font-family: themify;
+        speak: none;
+        font-style: normal;
+        font-weight: 400;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .ti-angle-left:before {
+        content: "\e64a";
+    }
+
+    *, ::after, ::before {
+        box-sizing: inherit;
+    }
+
+    ul.nav.nav-second-level.collapse {
+        display: none;
+    }
+
+    .d-navigation ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    #change-avatar-input {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .ti-facebook:before {
+        content: "\e741";
+    }
+
+    .ti-twitter:before {
+        content: "\e72a";
+    }
+
+    .ti-linkedin:before {
+        content: "\e735";
+    }
+
+    ul.nav.nav-second-level.collapse.show {
+        display: block;
+    }
+
+    ul.nav.nav-second-level.collapse {
+        display: none;
+    }
+
+    .collapse.show {
+        display: block;
+    }
+
+    .d-navigation ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .elso_syu89 ul li > a {
+        width: 38px;
+        height: 38px;
+        border-radius: 4px;
+        color: #738090 !important;
+        border: 1px solid #e7ebef;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    a.link:hover, a.link:focus, a:hover, a:focus {
+        color: var(--color-main);
+    }
+
+    a:hover, a:focus {
+        text-decoration: none;
+    }
+</style>
+
+    <section class="gray pt-4">
+        <div class="container-fluid">
+
+            <div class="row" style="margin-top: 80px">
+
+                <div class="col-lg-3 col-md-3">
+                    <div class="dashboard-navbar">
+                        <div class="d-user-avater">
+                            <div class="user-avater">
+                                <img src="https://tracnghiemhay.com/user_avatar/6346c8278b53f.jpg" class="img-fluid avater" alt="">
+                                <i class="fas fa-camera"></i>
+                                <input type="file" name="change-avatar-input" id="change-avatar-input">
+                            </div>
+                            <h4>Thịnh Trương</h4>
+                            <div class="elso_syu89">
+                                <ul>
+                                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+
+                        <div class="d-navigation">
+                            <ul id="side-menu">
+
+                                <li class="">
+                                    <a href="https://localhost:44307/Manage">
+                                        <i class="fas fa-th"></i>
+                                        Trang chủ
+                                    </a>
+                                </li>
+
+
+                                <li class="">
+                                    <a href="https://localhost:44307/Manage/Info">
+                                        <i class="fas fa-address-card"></i>
+                                        Thông tin của tôi
+                                        <!--<span class="fas fa-angle-left"></span> -->
+                                    </a>
+                                </li>
+
+
+                                <li class="">
+                                    <a href="https://localhost:44307/Manage/ChangePassword">
+                                        <i class="fa fa-shield-alt"></i>
+                                        Bảo mật
+                                        <!--<span class="fas fa-angle-left"></span> -->
+                                    </a>
+                                </li>
+
+
+                                <li class="">
+                                    <a href="https://localhost:44307/Manage/History">
+                                        <i class="fas fa-archive"></i>
+                                        Danh sách bài thi
+                                        <!--<span class="fas fa-angle-left"></span> -->
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="col-xl-5 col-lg-6 col-md-12">
+                    <div class="dashboard_wrap" data-select2-id="10">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 mb-4">
+                                <h6 class="m-0">Danh sách tất cả bài thi</h6>
+                            </div>
+                        </div>
+
+                        <form action="" id="search-form" data-select2-id="search-form">
+                            <div class="row align-items-end mb-5 justify-content-between" data-select2-id="9">
+                                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 ">
+                                    <div class="form-group smalls align-items-center" style="margin-top:25px">
+                                        <input type="text" name="search" id="search" value="" class="form-control" placeholder="Tìm kiếm">
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6" data-select2-id="8">
+                                    <div class="form-group" data-select2-id="7">
+                                        <label>Chuyên mục</label>
+                                        <div class="smalls" data-select2-id="6">
+                                            <select name="category_id" id="cates" class="form-control select2-hidden-accessible" data-select2-id="cates" tabindex="-1" aria-hidden="true">
+                                                <option value="" label=" ">Chọn Theo Danh Mục</option>
+                                                <option value="612609a83988cf06678b4569" label="Giáo dục đào tạo" data-select2-id="19">Giáo dục đào tạo</option>
+                                                <option value="6125ae573988cf074c8b456c" label="Hướng nghiệp" data-select2-id="20">Hướng nghiệp</option>
+                                                <option value="6125ad743988cf614a8b4569" label="IT Test" data-select2-id="21">IT Test</option>
+                                                <option value="612b8a743988cfe1248b4569" label="Đại Học" data-select2-id="22">Đại Học</option>
+                                                <option value="612c944f3988cf253c8b456b" label="Tiếng anh" data-select2-id="23">Tiếng anh</option>
+                                                <option value="612ca03a3988cfe73d8b4569" label="Thi THPT Quốc gia" data-select2-id="24">Thi THPT Quốc gia</option>
+                                                <option value="6195b2ea3988cf8f688b45dc" label="Trắc nghiệm Tổng hợp" data-select2-id="25">Trắc nghiệm Tổng hợp</option>
+                                                <option value="635363243988cf0d468b4579" label="Thi Olympic Online" data-select2-id="26">Thi Olympic Online</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Trang thái</label>
+                                        <div class="smalls">
+                                            <select id="trangthai" class="form-control select2-hidden-accessible" data-select2-id="trangthai" tabindex="-1" aria-hidden="true">
+                                                <option value="">Tất cả</option>
+                                                <option value="2">Đang thi</option>
+                                                <option value="1">Hoàn thành</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn text-white full-width theme-bg">Lọc</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                        <div class="row justify-content-between">
+                            <div class="col-xl-4 col-lg-5 col-md-6">
+                            </div>
+                        </div>
+
+                        <div class="row align-items-center justify-content-center">
+                            Không có bài thi bào
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+
+        </div>
+    </section>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

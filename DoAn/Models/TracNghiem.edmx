@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TracNghiem1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bai">
+          <Key>
+            <PropertyRef Name="BaiId" />
+          </Key>
+          <Property Name="BaiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenBai" Type="nvarchar(max)" />
+          <Property Name="NguoiTao" Type="nvarchar(max)" />
+          <Property Name="NgayTao" Type="date" />
+          <Property Name="LuoiThi" Type="int" />
+          <Property Name="SoCauHoi" Type="int" />
+          <Property Name="LoaiBaiId" Type="int" />
+        </EntityType>
+        <EntityType Name="CauHoi">
+          <Key>
+            <PropertyRef Name="CauHoiId" />
+          </Key>
+          <Property Name="CauHoiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CauHoi" Type="nvarchar(max)" />
+          <Property Name="BaiId" Type="int" />
+        </EntityType>
+        <EntityType Name="DanhMuc">
+          <Key>
+            <PropertyRef Name="DanhMucId" />
+          </Key>
+          <Property Name="DanhMucId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenDanhMuc" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="DapAn">
+          <Key>
+            <PropertyRef Name="DapAnId" />
+          </Key>
+          <Property Name="DapAnId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DapAn" Type="nvarchar" MaxLength="250" />
+          <Property Name="CauHoiId" Type="int" />
+        </EntityType>
+        <EntityType Name="KetQua">
+          <Key>
+            <PropertyRef Name="KetQuaId" />
+          </Key>
+          <Property Name="KetQuaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KetQua" Type="nvarchar" MaxLength="250" />
+          <Property Name="CauHoiId" Type="int" />
+        </EntityType>
+        <EntityType Name="LoaiBai">
+          <Key>
+            <PropertyRef Name="LoaiBaiId" />
+          </Key>
+          <Property Name="LoaiBaiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenLoaiBai" Type="nvarchar" MaxLength="250" />
+          <Property Name="DanhMucId" Type="int" />
+        </EntityType>
+        <Association Name="FK_Bai_LoaiBai">
+          <End Role="LoaiBai" Type="Self.LoaiBai" Multiplicity="0..1" />
+          <End Role="Bai" Type="Self.Bai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiBai">
+              <PropertyRef Name="LoaiBaiId" />
+            </Principal>
+            <Dependent Role="Bai">
+              <PropertyRef Name="LoaiBaiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CauHoi_Bai">
+          <End Role="Bai" Type="Self.Bai" Multiplicity="0..1" />
+          <End Role="CauHoi" Type="Self.CauHoi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bai">
+              <PropertyRef Name="BaiId" />
+            </Principal>
+            <Dependent Role="CauHoi">
+              <PropertyRef Name="BaiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DapAn_CauHoi">
+          <End Role="CauHoi" Type="Self.CauHoi" Multiplicity="0..1" />
+          <End Role="DapAn" Type="Self.DapAn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CauHoi">
+              <PropertyRef Name="CauHoiId" />
+            </Principal>
+            <Dependent Role="DapAn">
+              <PropertyRef Name="CauHoiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KetQua_CauHoi">
+          <End Role="CauHoi" Type="Self.CauHoi" Multiplicity="0..1" />
+          <End Role="KetQua" Type="Self.KetQua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CauHoi">
+              <PropertyRef Name="CauHoiId" />
+            </Principal>
+            <Dependent Role="KetQua">
+              <PropertyRef Name="CauHoiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoaiBai_DanhMuc">
+          <End Role="DanhMuc" Type="Self.DanhMuc" Multiplicity="0..1" />
+          <End Role="LoaiBai" Type="Self.LoaiBai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMuc">
+              <PropertyRef Name="DanhMucId" />
+            </Principal>
+            <Dependent Role="LoaiBai">
+              <PropertyRef Name="DanhMucId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TracNghiem1ModelStoreContainer">
+          <EntitySet Name="Bai" EntityType="Self.Bai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CauHoi" EntityType="Self.CauHoi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DanhMuc" EntityType="Self.DanhMuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DapAn" EntityType="Self.DapAn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KetQua" EntityType="Self.KetQua" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoaiBai" EntityType="Self.LoaiBai" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Bai_LoaiBai" Association="Self.FK_Bai_LoaiBai">
+            <End Role="LoaiBai" EntitySet="LoaiBai" />
+            <End Role="Bai" EntitySet="Bai" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CauHoi_Bai" Association="Self.FK_CauHoi_Bai">
+            <End Role="Bai" EntitySet="Bai" />
+            <End Role="CauHoi" EntitySet="CauHoi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DapAn_CauHoi" Association="Self.FK_DapAn_CauHoi">
+            <End Role="CauHoi" EntitySet="CauHoi" />
+            <End Role="DapAn" EntitySet="DapAn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KetQua_CauHoi" Association="Self.FK_KetQua_CauHoi">
+            <End Role="CauHoi" EntitySet="CauHoi" />
+            <End Role="KetQua" EntitySet="KetQua" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoaiBai_DanhMuc" Association="Self.FK_LoaiBai_DanhMuc">
+            <End Role="DanhMuc" EntitySet="DanhMuc" />
+            <End Role="LoaiBai" EntitySet="LoaiBai" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TracNghiem1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bai">
+          <Key>
+            <PropertyRef Name="BaiId" />
+          </Key>
+          <Property Name="BaiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenBai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NguoiTao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NgayTao" Type="DateTime" Precision="0" />
+          <Property Name="LuoiThi" Type="Int32" />
+          <Property Name="SoCauHoi" Type="Int32" />
+          <Property Name="LoaiBaiId" Type="Int32" />
+          <NavigationProperty Name="LoaiBai" Relationship="Self.FK_Bai_LoaiBai" FromRole="Bai" ToRole="LoaiBai" />
+          <NavigationProperty Name="CauHois" Relationship="Self.FK_CauHoi_Bai" FromRole="Bai" ToRole="CauHoi" />
+        </EntityType>
+        <EntityType Name="CauHoi">
+          <Key>
+            <PropertyRef Name="CauHoiId" />
+          </Key>
+          <Property Name="CauHoiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CauHoi1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BaiId" Type="Int32" />
+          <NavigationProperty Name="Bai" Relationship="Self.FK_CauHoi_Bai" FromRole="CauHoi" ToRole="Bai" />
+          <NavigationProperty Name="DapAns" Relationship="Self.FK_DapAn_CauHoi" FromRole="CauHoi" ToRole="DapAn" />
+          <NavigationProperty Name="KetQuas" Relationship="Self.FK_KetQua_CauHoi" FromRole="CauHoi" ToRole="KetQua" />
+        </EntityType>
+        <EntityType Name="DanhMuc">
+          <Key>
+            <PropertyRef Name="DanhMucId" />
+          </Key>
+          <Property Name="DanhMucId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenDanhMuc" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LoaiBais" Relationship="Self.FK_LoaiBai_DanhMuc" FromRole="DanhMuc" ToRole="LoaiBai" />
+        </EntityType>
+        <EntityType Name="DapAn">
+          <Key>
+            <PropertyRef Name="DapAnId" />
+          </Key>
+          <Property Name="DapAnId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DapAn1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CauHoiId" Type="Int32" />
+          <NavigationProperty Name="CauHoi" Relationship="Self.FK_DapAn_CauHoi" FromRole="DapAn" ToRole="CauHoi" />
+        </EntityType>
+        <EntityType Name="KetQua">
+          <Key>
+            <PropertyRef Name="KetQuaId" />
+          </Key>
+          <Property Name="KetQuaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KetQua1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CauHoiId" Type="Int32" />
+          <NavigationProperty Name="CauHoi" Relationship="Self.FK_KetQua_CauHoi" FromRole="KetQua" ToRole="CauHoi" />
+        </EntityType>
+        <EntityType Name="LoaiBai">
+          <Key>
+            <PropertyRef Name="LoaiBaiId" />
+          </Key>
+          <Property Name="LoaiBaiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenLoaiBai" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DanhMucId" Type="Int32" />
+          <NavigationProperty Name="Bais" Relationship="Self.FK_Bai_LoaiBai" FromRole="LoaiBai" ToRole="Bai" />
+          <NavigationProperty Name="DanhMuc" Relationship="Self.FK_LoaiBai_DanhMuc" FromRole="LoaiBai" ToRole="DanhMuc" />
+        </EntityType>
+        <Association Name="FK_Bai_LoaiBai">
+          <End Role="LoaiBai" Type="Self.LoaiBai" Multiplicity="0..1" />
+          <End Role="Bai" Type="Self.Bai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiBai">
+              <PropertyRef Name="LoaiBaiId" />
+            </Principal>
+            <Dependent Role="Bai">
+              <PropertyRef Name="LoaiBaiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CauHoi_Bai">
+          <End Role="Bai" Type="Self.Bai" Multiplicity="0..1" />
+          <End Role="CauHoi" Type="Self.CauHoi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bai">
+              <PropertyRef Name="BaiId" />
+            </Principal>
+            <Dependent Role="CauHoi">
+              <PropertyRef Name="BaiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DapAn_CauHoi">
+          <End Role="CauHoi" Type="Self.CauHoi" Multiplicity="0..1" />
+          <End Role="DapAn" Type="Self.DapAn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CauHoi">
+              <PropertyRef Name="CauHoiId" />
+            </Principal>
+            <Dependent Role="DapAn">
+              <PropertyRef Name="CauHoiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KetQua_CauHoi">
+          <End Role="CauHoi" Type="Self.CauHoi" Multiplicity="0..1" />
+          <End Role="KetQua" Type="Self.KetQua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CauHoi">
+              <PropertyRef Name="CauHoiId" />
+            </Principal>
+            <Dependent Role="KetQua">
+              <PropertyRef Name="CauHoiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoaiBai_DanhMuc">
+          <End Role="DanhMuc" Type="Self.DanhMuc" Multiplicity="0..1" />
+          <End Role="LoaiBai" Type="Self.LoaiBai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMuc">
+              <PropertyRef Name="DanhMucId" />
+            </Principal>
+            <Dependent Role="LoaiBai">
+              <PropertyRef Name="DanhMucId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TracNghiem1Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bais" EntityType="Self.Bai" />
+          <EntitySet Name="CauHois" EntityType="Self.CauHoi" />
+          <EntitySet Name="DanhMucs" EntityType="Self.DanhMuc" />
+          <EntitySet Name="DapAns" EntityType="Self.DapAn" />
+          <EntitySet Name="KetQuas" EntityType="Self.KetQua" />
+          <EntitySet Name="LoaiBais" EntityType="Self.LoaiBai" />
+          <AssociationSet Name="FK_Bai_LoaiBai" Association="Self.FK_Bai_LoaiBai">
+            <End Role="LoaiBai" EntitySet="LoaiBais" />
+            <End Role="Bai" EntitySet="Bais" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CauHoi_Bai" Association="Self.FK_CauHoi_Bai">
+            <End Role="Bai" EntitySet="Bais" />
+            <End Role="CauHoi" EntitySet="CauHois" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DapAn_CauHoi" Association="Self.FK_DapAn_CauHoi">
+            <End Role="CauHoi" EntitySet="CauHois" />
+            <End Role="DapAn" EntitySet="DapAns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KetQua_CauHoi" Association="Self.FK_KetQua_CauHoi">
+            <End Role="CauHoi" EntitySet="CauHois" />
+            <End Role="KetQua" EntitySet="KetQuas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoaiBai_DanhMuc" Association="Self.FK_LoaiBai_DanhMuc">
+            <End Role="DanhMuc" EntitySet="DanhMucs" />
+            <End Role="LoaiBai" EntitySet="LoaiBais" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TracNghiem1ModelStoreContainer" CdmEntityContainer="TracNghiem1Entities">
+          <EntitySetMapping Name="Bais">
+            <EntityTypeMapping TypeName="TracNghiem1Model.Bai">
+              <MappingFragment StoreEntitySet="Bai">
+                <ScalarProperty Name="BaiId" ColumnName="BaiId" />
+                <ScalarProperty Name="TenBai" ColumnName="TenBai" />
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="LuoiThi" ColumnName="LuoiThi" />
+                <ScalarProperty Name="SoCauHoi" ColumnName="SoCauHoi" />
+                <ScalarProperty Name="LoaiBaiId" ColumnName="LoaiBaiId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CauHois">
+            <EntityTypeMapping TypeName="TracNghiem1Model.CauHoi">
+              <MappingFragment StoreEntitySet="CauHoi">
+                <ScalarProperty Name="CauHoiId" ColumnName="CauHoiId" />
+                <ScalarProperty Name="CauHoi1" ColumnName="CauHoi" />
+                <ScalarProperty Name="BaiId" ColumnName="BaiId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DanhMucs">
+            <EntityTypeMapping TypeName="TracNghiem1Model.DanhMuc">
+              <MappingFragment StoreEntitySet="DanhMuc">
+                <ScalarProperty Name="DanhMucId" ColumnName="DanhMucId" />
+                <ScalarProperty Name="TenDanhMuc" ColumnName="TenDanhMuc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DapAns">
+            <EntityTypeMapping TypeName="TracNghiem1Model.DapAn">
+              <MappingFragment StoreEntitySet="DapAn">
+                <ScalarProperty Name="DapAnId" ColumnName="DapAnId" />
+                <ScalarProperty Name="DapAn1" ColumnName="DapAn" />
+                <ScalarProperty Name="CauHoiId" ColumnName="CauHoiId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KetQuas">
+            <EntityTypeMapping TypeName="TracNghiem1Model.KetQua">
+              <MappingFragment StoreEntitySet="KetQua">
+                <ScalarProperty Name="KetQuaId" ColumnName="KetQuaId" />
+                <ScalarProperty Name="KetQua1" ColumnName="KetQua" />
+                <ScalarProperty Name="CauHoiId" ColumnName="CauHoiId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoaiBais">
+            <EntityTypeMapping TypeName="TracNghiem1Model.LoaiBai">
+              <MappingFragment StoreEntitySet="LoaiBai">
+                <ScalarProperty Name="LoaiBaiId" ColumnName="LoaiBaiId" />
+                <ScalarProperty Name="TenLoaiBai" ColumnName="TenLoaiBai" />
+                <ScalarProperty Name="DanhMucId" ColumnName="DanhMucId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

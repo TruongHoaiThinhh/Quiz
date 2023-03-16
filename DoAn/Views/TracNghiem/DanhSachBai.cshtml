@@ -1,0 +1,1832 @@
+﻿@model IEnumerable<DoAn.Models.Bai>
+@{
+    ViewBag.Title = "BaiTheoPack";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Style.css" rel="stylesheet" />
+<style>
+    .english-selection .select-content-question {
+        margin-top: 36px;
+    }
+
+    .title15Bold {
+        font-family: "Nunito", sans-serif;
+        font-size: 15px;
+        line-height: 1.1;
+        font-weight: 700;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    .red {
+        color: #fe4500;
+    }
+
+    .row, .clearfix {
+        zoom: 1;
+    }
+
+    .col-md {
+        -ms-flex-preferred-size: 0;
+        flex-basis: 0;
+        -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        max-width: 100%;
+        margin: 10;
+    }
+
+    .english-selection .select-part.full-width {
+        width: 100%;
+    }
+
+    .examination-test .select-part {
+        margin-bottom: 35px;
+    }
+
+    .select-wrapper {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid #d9d9d9;
+        border-radius: 5px;
+        background: url( https://s.tracnghiem.net/assets/images/icons/arrow-select.png) right 13px center no-repeat;
+    }
+
+        .select-wrapper select {
+            padding: 14px 40px 13px 19px;
+            font-size: 18px;
+            line-height: 18px;
+            width: 100%;
+            border: none;
+            box-shadow: none;
+            font-family: "Nunito", sans-serif;
+            font-size: 15px;
+            line-height: 20px;
+            font-weight: 400;
+            background: transparent;
+            background-image: none;
+            -webkit-appearance: none;
+            outline: none;
+            cursor: pointer;
+            -moz-appearance: none;
+            text-overflow: ellipsis;
+        }
+
+            .select-wrapper select option {
+                margin: 40px;
+                background: rgba(0, 0, 0, .3);
+                color: #fff;
+                text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+            }
+
+        .select-wrapper select {
+            padding: 14px 40px 13px 19px;
+            font-size: 18px;
+            line-height: 18px;
+            width: 100%;
+            border: none;
+            box-shadow: none;
+            font-family: "Nunito", sans-serif;
+            font-size: 15px;
+            line-height: 20px;
+            font-weight: 400;
+            background: transparent;
+            background-image: none;
+            -webkit-appearance: none;
+            outline: none;
+            cursor: pointer;
+            -moz-appearance: none;
+            text-overflow: ellipsis;
+        }
+
+    .select-wrapper {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid #d9d9d9;
+        border-radius: 5px;
+        background: url(https://s.tracnghiem.net/assets/images/icons/arrow-select.png) right 13px center no-repeat;
+    }
+
+    .english-selection .select-part.full-width {
+        width: 100%;
+    }
+
+    .examination-test .select-part {
+        margin-bottom: 35px;
+    }
+
+    .english-selection .select-part {
+        width: 344px;
+        background: #fff;
+        margin-bottom: 14px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        -khtml-border-radius: 5px;
+    }
+
+    .row:after, .clearfix:after {
+        clear: both;
+    }
+
+    .clearfix:before, .clearfix:after, .row:before, .row:after {
+        content: " ";
+        display: block;
+        overflow: hidden;
+        visibility: hidden;
+        width: 0;
+        height: 0;
+    }
+
+    .row, .clearfix {
+        zoom: 1;
+    }
+
+    .english-selection .select-content-question {
+        margin-top: 36px;
+    }
+
+    .brLine {
+        width: 100%;
+        height: 1px;
+        background: #d9d9d9;
+    }
+
+    .title15Bold {
+        font-family: "Nunito", sans-serif;
+        font-size: 15px;
+        line-height: 1.1;
+        font-weight: 700;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    .red {
+        color: #fe4500;
+    }
+
+    a, p, h1, h2, h3, h4, h5 {
+        font-family: "Nunito", sans-serif;
+        font-size: 14px;
+        line-height: 1.1;
+        font-weight: 400;
+        color: #0c0c0c;
+    }
+
+    .english-selection .topics {
+        margin-bottom: 37px;
+    }
+
+    .english-selection .radio-control-box {
+        margin-right: 42px;
+        cursor: pointer;
+    }
+
+    .radio-control-box {
+        position: relative;
+        min-height: 68px;
+        min-width: 136px;
+        padding-left: 0;
+        display: inline-block;
+    }
+
+        .radio-control-box [type=radio]:checked {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .radio-control-box .custom-control-label {
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            min-height: 68px;
+            padding: 0 8px;
+            margin-left: 0;
+            border-radius: 5px;
+            font-family: "Nunito", sans-serif;
+            font-size: 13px;
+            line-height: 1.1;
+            font-weight: 700;
+            background: #fff;
+            color: #000;
+            position: relative;
+        }
+
+        .radio-control-box input:checked ~ label:before {
+            background: #3a4bcd !important;
+            border: solid 1px #3a4bcd !important;
+            outline: none;
+        }
+
+        .radio-control-box .custom-control-label::before, .radio-control-box .custom-control-label::after {
+            width: 100%;
+            height: 68px;
+            border-radius: 5px;
+            border: solid 1px #Red;
+            text-align: center;
+            top: 0;
+        }
+
+        .radio-control-box label:before {
+            content: "";
+            background: transparent;
+            border: solid 1px #707070;
+            outline: none;
+            border-radius: 5px;
+        }
+
+        .radio-control-box input:checked ~ label span {
+            color: #fff;
+        }
+
+        .radio-control-box .custom-control-label span {
+            min-width: 116px;
+            font-weight: 400;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+        }
+
+        .radio-control-box .custom-control-label::before, .radio-control-box .custom-control-label::after {
+            width: 100%;
+            height: 68px;
+            border-radius: 5px;
+            border: solid 1px #Red;
+            text-align: center;
+            top: 0;
+        }
+
+        .radio-control-box .custom-control-label {
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            min-height: 68px;
+            padding: 0 8px;
+            margin-left: 0;
+            border-radius: 5px;
+            font-family: "Nunito", sans-serif;
+            font-size: 13px;
+            line-height: 1.1;
+            font-weight: 700;
+            background: #fff;
+            color: #000;
+            position: relative;
+        }
+
+    .english-selection .radio-control-box {
+        margin-right: 42px;
+        cursor: pointer;
+    }
+
+    .radio-control-box {
+        position: relative;
+        min-height: 68px;
+        min-width: 136px;
+        padding-left: 0;
+        display: inline-block;
+    }
+
+        .radio-control-box [type=radio]:not(:checked) {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .radio-control-box .custom-control-label {
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            min-height: 68px;
+            padding: 0 8px;
+            margin-left: 0;
+            border-radius: 5px;
+            font-family: "Nunito", sans-serif;
+            font-size: 13px;
+            line-height: 1.1;
+            font-weight: 700;
+            background: #fff;
+            color: #000;
+            position: relative;
+        }
+
+            .radio-control-box .custom-control-label::before, .radio-control-box .custom-control-label::after {
+                width: 100%;
+                height: 68px;
+                border-radius: 5px;
+                border: solid 1px #Red;
+                text-align: center;
+                top: 0;
+            }
+
+        .radio-control-box label:before {
+            content: "";
+            background: transparent;
+            border: solid 1px #707070;
+            outline: none;
+            border-radius: 5px;
+        }
+
+        .radio-control-box .custom-control-label span {
+            min-width: 116px;
+            font-weight: 400;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+        }
+
+        .radio-control-box .custom-control-label::before, .radio-control-box .custom-control-label::after {
+            width: 100%;
+            height: 68px;
+            border-radius: 5px;
+            border: solid 1px #Red;
+            text-align: center;
+            top: 0;
+        }
+
+        .radio-control-box .custom-control-label {
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            min-height: 68px;
+            padding: 0 8px;
+            margin-left: 0;
+            border-radius: 5px;
+            font-family: "Nunito", sans-serif;
+            font-size: 13px;
+            line-height: 1.1;
+            font-weight: 700;
+            background: #fff;
+            color: #000;
+            position: relative;
+        }
+
+    .english-selection .radio-control-box {
+        margin-right: 42px;
+        cursor: pointer;
+    }
+
+    .radio-control-box {
+        position: relative;
+        min-height: 68px;
+        min-width: 136px;
+        padding-left: 0;
+        display: inline-block;
+    }
+
+        .radio-control-box .custom-control-label span b {
+            font-weight: 700;
+        }
+
+        .radio-control-box .custom-control-label span {
+            min-width: 116px;
+            font-weight: 400;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+        }
+
+        .radio-control-box [type=radio]:not(:checked) {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .radio-control-box .custom-control-label {
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            min-height: 68px;
+            padding: 0 8px;
+            margin-left: 0;
+            border-radius: 5px;
+            font-family: "Nunito", sans-serif;
+            font-size: 13px;
+            line-height: 1.1;
+            font-weight: 700;
+            background: #fff;
+            color: #000;
+            position: relative;
+        }
+
+            .radio-control-box .custom-control-label::before, .radio-control-box .custom-control-label::after {
+                width: 100%;
+                height: 68px;
+                border-radius: 5px;
+                border: solid 1px #Red;
+                text-align: center;
+                top: 0;
+            }
+
+        .radio-control-box label:before {
+            content: "";
+            background: transparent;
+            border: solid 1px #707070;
+            outline: none;
+            border-radius: 5px;
+        }
+
+        .radio-control-box .custom-control-label {
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            min-height: 68px;
+            padding: 0 8px;
+            margin-left: 0;
+            border-radius: 5px;
+            font-family: "Nunito", sans-serif;
+            font-size: 13px;
+            line-height: 1.1;
+            font-weight: 700;
+            background: #fff;
+            color: #000;
+            position: relative;
+        }
+
+    form, input, textarea {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-family: "NiveaOTFBook", Arial, Helvetica, sans-serif;
+        color: #575859;
+    }
+
+    .radio-control-box [type=radio]:not(:checked) {
+        position: absolute;
+        pointer-events: none;
+        opacity: 0;
+    }
+
+    .radio-control-box .custom-control-label {
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        min-height: 68px;
+        padding: 0 8px;
+        margin-left: 0;
+        border-radius: 5px;
+        font-family: "Nunito", sans-serif;
+        font-size: 13px;
+        line-height: 1.1;
+        font-weight: 700;
+        background: #fff;
+        color: #000;
+        position: relative;
+    }
+
+        .radio-control-box .custom-control-label::before, .radio-control-box .custom-control-label::after {
+            width: 100%;
+            height: 68px;
+            border-radius: 5px;
+            border: solid 1px #Red;
+            text-align: center;
+            top: 0;
+        }
+
+    .radio-control-box label:before {
+        content: "";
+        background: transparent;
+        border: solid 1px #707070;
+        outline: none;
+        border-radius: 5px;
+    }
+
+    .radio-control-box .custom-control-label span {
+        min-width: 116px;
+        font-weight: 400;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+    }
+
+    .radio-control-box .custom-control-label {
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        min-height: 68px;
+        padding: 0 8px;
+        margin-left: 0;
+        border-radius: 5px;
+        font-family: "Nunito", sans-serif;
+        font-size: 13px;
+        line-height: 1.1;
+        font-weight: 700;
+        background: #fff;
+        color: #000;
+        position: relative;
+    }
+
+        .radio-control-box .custom-control-label span b {
+            font-weight: 700;
+        }
+
+    b {
+        font-weight: 700;
+    }
+
+    .radio-control-box .custom-control-label span {
+        min-width: 116px;
+        font-weight: 400;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+    }
+
+    .radio-control-box .custom-control-label::before, .radio-control-box .custom-control-label::after {
+        width: 100%;
+        height: 68px;
+        border-radius: 5px;
+        border: solid 1px #Red;
+        text-align: center;
+        top: 0;
+    }
+
+    .radio-control-box .custom-control-label {
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        min-height: 68px;
+        padding: 0 8px;
+        margin-left: 0;
+        border-radius: 5px;
+        font-family: "Nunito", sans-serif;
+        font-size: 13px;
+        line-height: 1.1;
+        font-weight: 700;
+        background: #fff;
+        color: #000;
+        position: relative;
+    }
+
+    .english-selection .radio-control-box {
+        margin-right: 42px;
+        cursor: pointer;
+    }
+
+    .radio-control-box {
+        position: relative;
+        min-height: 68px;
+        min-width: 136px;
+        padding-left: 0;
+        display: inline-block;
+    }
+
+    .english-selection .topics {
+        margin-bottom: 37px;
+    }
+
+    .brLine {
+        width: 100%;
+        height: 1px;
+        background: #d9d9d9;
+    }
+
+    .english-selection .select-content-question {
+        margin-top: 36px;
+    }
+
+    .title15Bold {
+        font-family: "Nunito", sans-serif;
+        font-size: 15px;
+        line-height: 1.1;
+        font-weight: 700;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    .red {
+        color: #fe4500;
+    }
+
+    .english-selection .topics {
+        margin-bottom: 37px;
+    }
+
+    .english-selection .radio-control-box {
+        margin-right: 42px;
+        cursor: pointer;
+    }
+
+    .radio-control-box {
+        position: relative;
+        min-height: 68px;
+        min-width: 136px;
+        padding-left: 0;
+        display: inline-block;
+    }
+
+        .radio-control-box [type=radio]:checked {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .radio-control-box .custom-control-label {
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            min-height: 68px;
+            padding: 0 8px;
+            margin-left: 0;
+            border-radius: 5px;
+            font-family: "Nunito", sans-serif;
+            font-size: 13px;
+            line-height: 1.1;
+            font-weight: 700;
+            background: #fff;
+            color: #000;
+            position: relative;
+        }
+
+            .radio-control-box .custom-control-label::before, .radio-control-box .custom-control-label::after {
+                width: 100%;
+                height: 68px;
+                border-radius: 5px;
+                border: solid 1px #Red;
+                text-align: center;
+                top: 0;
+            }
+
+        .radio-control-box label:before {
+            content: "";
+            background: transparent;
+            border: solid 1px #707070;
+            outline: none;
+            border-radius: 5px;
+        }
+
+        .radio-control-box input:checked ~ label span {
+            color: #fff;
+        }
+
+        .radio-control-box .custom-control-label span {
+            min-width: 116px;
+            font-weight: 400;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+        }
+
+            .radio-control-box .custom-control-label span b {
+                font-weight: 700;
+            }
+
+    b {
+        font-weight: 700;
+    }
+
+    .radio-control-box input:checked ~ label span {
+        color: #fff;
+    }
+
+    .radio-control-box .custom-control-label span {
+        min-width: 116px;
+        font-weight: 400;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+    }
+
+    *, ::after, ::before {
+        box-sizing: border-box;
+    }
+
+    .radio-control-box .custom-control-label {
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        min-height: 68px;
+        padding: 0 8px;
+        margin-left: 0;
+        border-radius: 5px;
+        font-family: "Nunito", sans-serif;
+        font-size: 13px;
+        line-height: 1.1;
+        font-weight: 700;
+        background: #fff;
+        color: #000;
+        position: relative;
+    }
+
+        .radio-control-box .custom-control-label::before, .radio-control-box .custom-control-label::after {
+            width: 100%;
+            height: 68px;
+            border-radius: 5px;
+            border: solid 1px #Red;
+            text-align: center;
+            top: 0;
+        }
+
+    .radio-control-box .custom-control-label {
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        min-height: 68px;
+        padding: 0 8px;
+        margin-left: 0;
+        border-radius: 5px;
+        font-family: "Nunito", sans-serif;
+        font-size: 13px;
+        line-height: 1.1;
+        font-weight: 700;
+        background: #fff;
+        color: #000;
+        position: relative;
+    }
+
+    .english-selection .radio-control-box {
+        margin-right: 42px;
+        cursor: pointer;
+    }
+
+    .radio-control-box {
+        position: relative;
+        min-height: 68px;
+        min-width: 136px;
+        padding-left: 0;
+        display: inline-block;
+    }
+
+        .radio-control-box [type=radio]:not(:checked) {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .radio-control-box .custom-control-label {
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            min-height: 68px;
+            padding: 0 8px;
+            margin-left: 0;
+            border-radius: 5px;
+            font-family: "Nunito", sans-serif;
+            font-size: 13px;
+            line-height: 1.1;
+            font-weight: 700;
+            background: #fff;
+            color: #000;
+            position: relative;
+        }
+
+            .radio-control-box .custom-control-label::before, .radio-control-box .custom-control-label::after {
+                width: 100%;
+                height: 68px;
+                border-radius: 5px;
+                border: solid 1px #Red;
+                text-align: center;
+                top: 0;
+            }
+
+        .radio-control-box label:before {
+            content: "";
+            background: transparent;
+            border: solid 1px #707070;
+            outline: none;
+            border-radius: 5px;
+        }
+
+        .radio-control-box .custom-control-label span {
+            min-width: 116px;
+            font-weight: 400;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+        }
+
+            .radio-control-box .custom-control-label span b {
+                font-weight: 700;
+            }
+
+    b {
+        font-weight: 700;
+    }
+
+    .radio-control-box .custom-control-label span {
+        min-width: 116px;
+        font-weight: 400;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+    }
+
+    .radio-control-box .custom-control-label::before, .radio-control-box .custom-control-label::after {
+        width: 100%;
+        height: 68px;
+        border-radius: 5px;
+        border: solid 1px #Red;
+        text-align: center;
+        top: 0;
+    }
+
+    .radio-control-box .custom-control-label {
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        min-height: 68px;
+        padding: 0 8px;
+        margin-left: 0;
+        border-radius: 5px;
+        font-family: "Nunito", sans-serif;
+        font-size: 13px;
+        line-height: 1.1;
+        font-weight: 700;
+        background: #fff;
+        color: #000;
+        position: relative;
+    }
+
+    .english-selection .radio-control-box {
+        margin-right: 42px;
+        cursor: pointer;
+    }
+
+    .radio-control-box {
+        position: relative;
+        min-height: 68px;
+        min-width: 136px;
+        padding-left: 0;
+        display: inline-block;
+    }
+
+    .english-selection .topics {
+        margin-bottom: 37px;
+    }
+
+    .radio-control-box .custom-control-label span b {
+        font-weight: 700;
+    }
+
+    b {
+        font-weight: 700;
+    }
+
+    .radio-control-box input:checked ~ label span {
+        color: #fff;
+    }
+
+    .radio-control-box .custom-control-label span {
+        min-width: 116px;
+        font-weight: 400;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+    }
+
+    .english-selection .select-part.full-width {
+        width: 100%;
+    }
+
+    .examination-test .select-part {
+        margin-bottom: 35px;
+    }
+
+    .english-selection .select-part {
+        width: 344px;
+        background: #fff;
+        margin-bottom: 14px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        -khtml-border-radius: 5px;
+    }
+
+    .select-wrapper {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid #d9d9d9;
+        border-radius: 5px;
+        background: url(https://s.tracnghiem.net/assets/images/icons/arrow-select.png) right 13px center no-repeat;
+    }
+
+        .select-wrapper select {
+            padding: 14px 40px 13px 19px;
+            font-size: 18px;
+            line-height: 18px;
+            width: 100%;
+            border: none;
+            box-shadow: none;
+            font-family: "Nunito", sans-serif;
+            font-size: 15px;
+            line-height: 20px;
+            font-weight: 400;
+            background: transparent;
+            background-image: none;
+            -webkit-appearance: none;
+            outline: none;
+            cursor: pointer;
+            -moz-appearance: none;
+            text-overflow: ellipsis;
+        }
+
+            .select-wrapper select option {
+                margin: 40px;
+                background: rgba(0, 0, 0, .3);
+                color: #fff;
+                text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+            }
+
+    .radio-control-box .custom-control-label {
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        min-height: 68px;
+        padding: 0 8px;
+        margin-left: 0;
+        border-radius: 5px;
+        font-family: "Nunito", sans-serif;
+        font-size: 13px;
+        line-height: 1.1;
+        font-weight: 700;
+        background: #fff;
+        color: #000;
+        position: relative;
+    }
+
+        .radio-control-box .custom-control-label::before, .radio-control-box .custom-control-label::after {
+            width: 100%;
+            height: 68px;
+            border-radius: 5px;
+            border: solid 1px #a5a5a5;
+            text-align: center;
+            top: 0;
+        }
+
+    .custom-control-input:checked ~ .custom-control-label::before {
+        color: #fff;
+        background-color: #007bff;
+    }
+
+    .radio-control-box input:checked ~ label:before {
+        background: #3a4bcd !important;
+        border: solid 1px #3a4bcd !important;
+        outline: none;
+    }
+
+    .radio-control-box .custom-control-label::before, .radio-control-box .custom-control-label::after {
+        width: 100%;
+        height: 68px;
+        border-radius: 5px;
+        border: solid 1px #a5a5a5;
+        text-align: center;
+        top: 0;
+    }
+
+    .radio-control-box label:before {
+        content: "";
+        background: transparent;
+        border: solid 1px #707070;
+        outline: none;
+        border-radius: 5px;
+    }
+
+    .custom-control-label::before {
+        position: absolute;
+        top: 0.25rem;
+        left: 0;
+        display: block;
+        width: 1rem;
+        height: 1rem;
+        pointer-events: none;
+        content: "";
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-color: #dee2e6;
+    }
+
+    .custom-control-label::after {
+        position: absolute;
+        top: 0.25rem;
+        left: 0;
+        display: block;
+        width: 1rem;
+        height: 1rem;
+        content: "";
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 50% 50%;
+    }
+
+    .english-selection p {
+        font-family: "Nunito", sans-serif;
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 400;
+    }
+
+    .english-selection .accordion-group {
+        margin-top: 30px;
+    }
+
+    .accordion-group .card.d9Box {
+        border-radius: 5px;
+    }
+
+    .accordion-group .card {
+        margin-bottom: 20px;
+    }
+
+    .d9Box {
+        border: solid 1px #d9d9d9;
+        border-radius: 8px;
+    }
+
+    .card {
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0,0,0,.125);
+        border-radius: 0.25rem;
+    }
+
+    .accordion-group .card-header {
+        background: transparent;
+        border: none;
+        padding: 22px 25px 21px 12px;
+    }
+
+    .card-header:first-child {
+        border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+    }
+
+    .card-header {
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 0;
+        background-color: rgba(0,0,0,.03);
+        border-bottom: 1px solid rgba(0,0,0,.125);
+    }
+
+    .checkbox-control, .radio-control {
+        width: 100%;
+        position: relative;
+        display: block;
+        min-height: 23px;
+        padding-right: 25px;
+    }
+
+    .collapse {
+        display: none;
+    }
+
+    form, input, textarea {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-family: "NiveaOTFBook", Arial, Helvetica, sans-serif;
+        color: #575859;
+    }
+
+    .collapse.show {
+        display: block;
+    }
+
+    .accordion-group .card-item {
+        padding-left: 12px;
+        padding-bottom: 21px;
+    }
+
+    .brLine {
+        width: 100%;
+        height: 1px;
+        background: #d9d9d9;
+    }
+
+    .accordion-group .card-item .checkbox-control {
+        margin-top: 24px;
+    }
+
+    .checkbox-control, .radio-control {
+        width: 100%;
+        position: relative;
+        display: block;
+        min-height: 23px;
+        padding-right: 25px;
+    }
+
+        .checkbox-control [type=checkbox]:not(:checked), .checkbox-control [type=radio]:not(:checked), .radio-control [type=checkbox]:not(:checked), .radio-control [type=radio]:not(:checked) {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+    input[type=checkbox], input[type=radio] {
+        box-sizing: border-box;
+        padding: 0;
+    }
+
+    .custom-control-input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+
+    input {
+        outline: none;
+        box-shadow: none !important;
+        font-family: "Nunito", sans-serif;
+        font-size: 14px;
+        line-height: 1.1;
+        font-weight: 400;
+    }
+
+    .checkbox-control .custom-control-label, .radio-control .custom-control-label {
+        z-index: 2;
+        width: 100%;
+        font-family: "Nunito", sans-serif;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 400;
+        position: relative;
+        padding-left: 35px;
+        margin-left: 0;
+        max-height: 24px;
+    }
+
+    .custom-control-label {
+        margin-bottom: 0;
+    }
+
+    .checkbox-control .custom-control-label::before, .radio-control .custom-control-label::before {
+        width: 24px;
+        height: 24px;
+        top: 0;
+    }
+
+    .checkbox-control label:before, .radio-control label:before {
+        content: "";
+        background: transparent;
+        border: solid 1px #707070;
+        outline: none;
+        border-radius: 5px;
+    }
+
+    .custom-control-label::before {
+        position: absolute;
+        top: 0.25rem;
+        left: 0;
+        display: block;
+        width: 1rem;
+        height: 1rem;
+        pointer-events: none;
+        content: "";
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-color: #dee2e6;
+    }
+
+    a, p, h1, h2, h3, h4, h5 {
+        font-family: "Nunito", sans-serif;
+        font-size: 14px;
+        line-height: 1.1;
+        font-weight: 400;
+        color: #0c0c0c;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    a {
+        outline: none;
+    }
+
+    .checkbox-control .custom-control-label::after, .radio-control .custom-control-label::after {
+        width: 24px;
+        height: 24px;
+        top: 0;
+    }
+
+    .custom-control-label::after {
+        position: absolute;
+        top: 0.25rem;
+        left: 0;
+        display: block;
+        width: 1rem;
+        height: 1rem;
+        content: "";
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 50% 50%;
+    }
+
+    .accordion-group .arrow[aria-expanded=true] {
+        background: url(https://s.tracnghiem.net/assets/images/icons/arrow-down.png) no-repeat center;
+        width: 12px;
+        position: absolute;
+        height: 7px;
+        right: 0;
+        margin-right: -30px;
+        top: 50%;
+        margin-top: -30px;
+        padding: 30px;
+        cursor: pointer;
+    }
+</style>
+
+<div class="breadcrumb">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="https://tracnghiem.net/">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="https://tracnghiem.net/thptqg/">Thi THPTQG </a></li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="content-two-columns" style="height: auto !important;">
+    <div class="container" style="height: auto !important;">
+        <div class="row" style="height: auto !important;">
+            <!--LEFT CONTENT-->
+            <div class="cot-trai">
+                <!--ENGLISH TEST SKILL-->
+                <div class="skill-test-lists common-test-detail">
+                    <div class="d9Box part-item">
+                        <div class="select-content-question">
+                            <h3 class="title15Bold red">B1: Chọn lớp và môn</h3>
+                            <div class="row">
+                                <div class="col-md">
+                                    <div class="select-part full-width">
+                                        <div class="select-wrapper">
+                                            <select id="selectGrade" name="selectGrade" onchange="onChangeSelectGrade()">
+                                                <option selected="" value="lop-12">Lớp 12</option>
+                                                <option value="lop-11">Lớp 11</option>
+                                                <option value="lop-10">Lớp 10</option>
+                                                <option value="lop-9">Lớp 9</option>
+                                                <option value="lop-8">Lớp 8</option>
+                                                <option value="lop-7">Lớp 7</option>
+                                                <option value="lop-6">Lớp 6</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md">
+                                    <div class="select-part full-width">
+                                        <div class="select-wrapper" id="selectWrapperSubject">
+                                            <select id="selectSubject" name="selectSubject" onchange="onChangeSelectSubject()">
+                                                <option selected="" value="toan-hoc">Toán</option>
+                                                <option value="vat-ly">Vật Lý</option>
+                                                <option value="hoa-hoc">Hóa Học</option>
+                                                <option value="sinh-hoc">Sinh Học</option>
+                                                <option value="ngu-van">Ngữ Văn</option>
+                                                <option value="tieng-anh">Tiếng Anh</option>
+                                                <option value="lich-su">Lịch Sử</option>
+                                                <option value="dia-ly">Địa Lý</option>
+                                                <option value="gdcd">GDCD</option>
+                                                <option value="cong-nghe">Công Nghệ</option>
+                                                <option value="tin-hoc">Tin Học</option>
+                                                <option value="giao-duc-quoc-phong">Giáo dục quốc phòng</option>
+                                                <option value="lich-su-va-dia-ly">Lịch sử - Địa lí</option>
+                                                <option value="khoa-hoc-tu-nhien">Khoa học tự nhiên</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="brLine"></div>
+
+                        <div class="select-topic">
+                            <h3 class="title15Bold red">B2: Loại đề</h3>
+                            <div class="topics">
+                                <div class="radio-control-box">
+                                    <input onclick="redirectTypeExam('2')" type="radio" checked="" value="0" name="typeExam" class="custom-control-input" id="radio-0">
+                                    <label for="radio-0" class="custom-control-label"><span><b>Đề thi giữa kỳ, học kỳ</b><br>50 câu / 60'</span></label>
+                                </div>
+                                <div class="radio-control-box">
+                                    <input onclick="redirectTypeExam('3')" type="radio" value="1" name="typeExam" class="custom-control-input" id="radio-1">
+                                    <label for="radio-1" class="custom-control-label"><span><b>Đề kiểm tra 1 tiết</b><br>30 câu / 45'</span></label>
+                                </div>
+                                <div class="radio-control-box">
+                                    <input onclick="redirectTypeExam('4')" type="radio" value="2" name="typeExam" class="custom-control-input" id="radio-2">
+                                    <label for="radio-2" class="custom-control-label"><span><b>Đề kiểm tra 15 phút</b><br>10 câu / 15'</span></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="brLine"></div>
+
+                        <h3 class="title15Bold red">B3: Chọn nội dung</h3>
+                        <div class="topics">
+                            <div class="radio-control-box">
+                                <input type="radio" value="2" onclick="redirectTypeExam('2','&amp;mode=2')" checked="" name="modeExam" class="custom-control-input" id="radio-sample">
+                                <label for="radio-sample" class="custom-control-label"><span><b>Đề thi thử</b><br></span></label>
+                            </div>
+                            <div class="radio-control-box">
+                                <input type="radio" value="1" onclick="redirectTypeExam('2','&amp;mode=1')" name="modeExam" class="custom-control-input" id="radio-random">
+                                <label for="radio-random" class="custom-control-label"><span><b>Trộn đề tự động</b><br></span></label>
+                            </div>
+                        </div>
+                        <h3 class="title15Bold red"></h3>
+                        <div class="accordion-group" id="chapterLessionWrapper" style="display: none;">
+                            <!--CONTENT 1-->
+                            <div class="trondetudon">
+                                <div class="card d9Box">
+                                    <div class="card-header" id="">
+                                        <div class="checkbox-control">
+                                            <input type="checkbox" class="custom-control-input" data-chapterno="1" id="checkAllForCollapse1" onclick="FuncDesktop.checkedAll('#checkAllForCollapse1', '#collapse1')">
+
+                                            <label for="checkAllForCollapse1" class="custom-control-label">
+                                                Ứng Dụng Đạo Hàm Để Khảo Sát Và Vẽ Đồ Thị Của Hàm Số
+                                            </label>
+                                            <span class="arrow" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse1"></span>
+                                        </div>
+                                    </div>
+                                    <div id="collapse1" class="collapse " style="">
+                                        <div class="card-item">
+                                            <div class="brLine"></div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession1[]" value="1390" class="custom-control-input" id="group1-1">
+                                                <label for="group1-1" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-su-dong-bien-nghich-bien-cua-ham-so-1390.html" class="lessionLink">Sự đồng biến, nghịch biến của hàm số</a></label>
+
+
+                                            </div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession1[]" value="1391" class="custom-control-input" id="group1-2">
+                                                <label for="group1-2" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-cuc-tri-cua-ham-so-1391.html" class="lessionLink">Cực trị của hàm số</a></label>
+
+
+                                            </div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession1[]" value="1392" class="custom-control-input" id="group1-3">
+                                                <label for="group1-3" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-gia-tri-lon-nhat-va-gia-tri-nho-nhat-cua-ham-so-1392.html" class="lessionLink">Giá trị lớn nhất và giá trị nhỏ nhất của hàm số</a></label>
+
+
+                                            </div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession1[]" value="1393" class="custom-control-input" id="group1-4">
+                                                <label for="group1-4" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-duong-tiem-can-1393.html" class="lessionLink">Đường tiệm cận</a></label>
+
+
+                                            </div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession1[]" value="1394" class="custom-control-input" id="group1-5">
+                                                <label for="group1-5" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-khao-sat-su-bien-thien-va-ve-do-thi-cua-ham-so-1394.html" class="lessionLink">Khảo sát sự biến thiên và vẽ đồ thị của hàm số</a></label>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card d9Box">
+                                    <div class="card-header" id="">
+                                        <div class="checkbox-control">
+                                            <input type="checkbox" class="custom-control-input" data-chapterno="2" id="checkAllForCollapse2" onclick="FuncDesktop.checkedAll('#checkAllForCollapse2', '#collapse2')">
+
+                                            <label for="checkAllForCollapse2" class="custom-control-label">
+                                                Hàm Số Lũy Thừa Hàm Số Mũ Và Hàm Số Lôgarit
+                                            </label>
+                                            <span class="arrow" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2"></span>
+                                        </div>
+                                    </div>
+                                    <div id="collapse2" class="collapse" style="">
+                                        <div class="card-item">
+                                            <div class="brLine"></div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession2[]" value="1395" class="custom-control-input" id="group2-1">
+                                                <label for="group2-1" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-luy-thua-1395.html" class="lessionLink">Lũy thừa</a></label>
+
+
+                                            </div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession2[]" value="1396" class="custom-control-input" id="group2-2">
+                                                <label for="group2-2" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-ham-so-luy-thua-1396.html" class="lessionLink">Hàm số lũy thừa</a></label>
+
+
+                                            </div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession2[]" value="1397" class="custom-control-input" id="group2-3">
+                                                <label for="group2-3" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-logarit-1397.html" class="lessionLink">Lôgarit</a></label>
+
+
+                                            </div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession2[]" value="1398" class="custom-control-input" id="group2-4">
+                                                <label for="group2-4" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-phuong-trinh-mu-va-phuong-trinh-logarit-1398.html" class="lessionLink">Phương trình mũ và phương trình lôgarit</a></label>
+
+
+                                            </div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession2[]" value="1399" class="custom-control-input" id="group2-5">
+                                                <label for="group2-5" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-bat-phuong-trinh-mu-va-bat-phuong-trinh-logarit-1399.html" class="lessionLink">Bất phương trình mũ và bất phương trình lôgarit</a></label>
+
+
+                                            </div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession2[]" value="1410" class="custom-control-input" id="group2-6">
+                                                <label for="group2-6" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-ham-so-mu-ham-so-logarit-1410.html" class="lessionLink">Hàm số mũ. Hàm số lôgarit</a></label>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card d9Box">
+                                    <div class="card-header" id="">
+                                        <div class="checkbox-control">
+                                            <input type="checkbox" class="custom-control-input" data-chapterno="3" id="checkAllForCollapse3" onclick="FuncDesktop.checkedAll('#checkAllForCollapse3', '#collapse3')">
+
+                                            <label for="checkAllForCollapse3" class="custom-control-label">
+                                                Nguyên Hàm - Tích Phân Và Ứng Dụng
+                                            </label>
+                                            <span class="arrow" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3"></span>
+                                        </div>
+                                    </div>
+                                    <div id="collapse3" class="collapse " style="">
+                                        <div class="card-item">
+                                            <div class="brLine"></div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession[]" value="1400" class="custom-control-input" id="group3-1">
+                                                <label for="group3-1" class="custom-control-label"></label>
+
+
+                                            </div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession[]" value="1401" class="custom-control-input" id="group3-2">
+                                                <label for="group3-2" class="custom-control-label">Tích phân</a></label>
+
+
+                                            </div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession[]" value="1402" class="custom-control-input" id="group3-3">
+                                                <label for="group3-3" class="custom-control-label">Ứng dụng của tích phân trong hình học</a></label>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card d9Box">
+                                    <div class="card-header" id="">
+                                        <div class="checkbox-control">
+                                            <input type="checkbox" class="custom-control-input" data-chapterno="4" id="checkAllForCollapse4" onclick="FuncDesktop.checkedAll('#checkAllForCollapse4', '#collapse4')">
+
+                                            <label for="checkAllForCollapse4" class="custom-control-label">
+                                                Số phức
+                                            </label>
+                                            <span class="arrow" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4"></span>
+                                        </div>
+                                    </div>
+                                    <div id="collapse4" class="collapse " style="">
+                                        <div class="card-item">
+                                            <div class="brLine"></div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession[]" value="1403" class="custom-control-input" id="group4-1">
+                                                <label for="group4-1" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-so-phuc-1403.html" class="lessionLink">Số phức</a></label>
+
+
+                                            </div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession[]" value="1404" class="custom-control-input" id="group4-2">
+                                                <label for="group4-2" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-cong-tru-va-nhan-so-phuc-1404.html" class="lessionLink">Cộng, trừ và nhân số phức</a></label>
+
+
+                                            </div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession[]" value="1405" class="custom-control-input" id="group4-3">
+                                                <label for="group4-3" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-phep-chia-so-phuc-1405.html" class="lessionLink">Phép chia số phức</a></label>
+
+
+                                            </div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession[]" value="1406" class="custom-control-input" id="group4-4">
+                                                <label for="group4-4" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-phuong-trinh-bac-hai-voi-he-so-thuc-1406.html" class="lessionLink">Phương trình bậc hai với hệ số thực</a></label>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card d9Box">
+                                    <div class="card-header" id="">
+                                        <div class="checkbox-control">
+                                            <input type="checkbox" class="custom-control-input" data-chapterno="5" id="checkAllForCollapse5" onclick="FuncDesktop.checkedAll('#checkAllForCollapse5', '#collapse5')">
+
+                                            <label for="checkAllForCollapse5" class="custom-control-label">
+                                                Khối Đa Diện
+                                            </label>
+                                            <span class="arrow" data-toggle="collapse" data-target="#collapse5" aria-expanded="true" aria-controls="collapse5"></span>
+                                        </div>
+                                    </div>
+                                    <div id="collapse5" class="collapse" style="">
+                                        <div class="card-item">
+                                            <div class="brLine"></div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession[]" value="1407" class="custom-control-input" id="group5-1">
+                                                <label for="group5-1" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-khai-niem-ve-khoi-da-dien-1407.html" class="lessionLink">Khái niệm về khối đa diện</a></label>
+
+
+                                            </div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession[]" value="1408" class="custom-control-input" id="group5-2">
+                                                <label for="group5-2" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-khoi-da-dien-loi-va-khoi-da-dien-deu-1408.html" class="lessionLink">Khối đa diện lồi và khối đa diện đều</a></label>
+
+
+                                            </div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession[]" value="1409" class="custom-control-input" id="group5-3">
+                                                <label for="group5-3" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-khai-niem-ve-the-tich-cua-khoi-da-dien-1409.html" class="lessionLink">Khái niệm về thể tích của khối đa diện</a></label>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card d9Box">
+                                    <div class="card-header" id="">
+                                        <div class="checkbox-control">
+                                            <input type="checkbox" class="custom-control-input" data-chapterno="6" id="checkAllForCollapse6" onclick="FuncDesktop.checkedAll('#checkAllForCollapse6', '#collapse6')">
+
+                                            <label for="checkAllForCollapse6" class="custom-control-label">
+                                                Mặt nón, mặt trụ, mặt cầu
+                                            </label>
+                                            <span class="arrow" data-toggle="collapse" data-target="#collapse6" aria-expanded="true" aria-controls="collapse6"></span>
+                                        </div>
+                                    </div>
+                                    <div id="collapse6" class="collapse" style="">
+                                        <div class="card-item">
+                                            <div class="brLine"></div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession[]" value="1411" class="custom-control-input" id="group6-1">
+                                                <label for="group6-1" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-khai-niem-ve-mat-tron-xoay-1411.html" class="lessionLink">Khái niệm về mặt tròn xoay</a></label>
+
+
+                                            </div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession[]" value="1412" class="custom-control-input" id="group6-2">
+                                                <label for="group6-2" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-mat-cau-1412.html" class="lessionLink">Mặt cầu</a></label>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card d9Box">
+                                    <div class="card-header" id="">
+                                        <div class="checkbox-control">
+                                            <input type="checkbox" class="custom-control-input" data-chapterno="7" id="checkAllForCollapse7" onclick="FuncDesktop.checkedAll('#checkAllForCollapse7', '#collapse7')">
+
+                                            <label for="checkAllForCollapse7" class="custom-control-label">
+                                                Phương pháp toạ độ trong không gian
+                                            </label>
+                                            <span class="arrow" data-toggle="collapse" data-target="#collapse7" aria-expanded="true" aria-controls="collapse7"></span>
+                                        </div>
+                                    </div>
+                                    <div id="collapse7" class="collapse" style="">
+                                        <div class="card-item">
+                                            <div class="brLine"></div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession[]" value="1413" class="custom-control-input" id="group7-1">
+                                                <label for="group7-1" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-he-toa-do-trong-khong-gian-1413.html" class="lessionLink">Hệ tọa độ trong không gian</a></label>
+
+
+                                            </div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession[]" value="1414" class="custom-control-input" id="group7-2">
+                                                <label for="group7-2" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-phuong-trinh-mat-phang-1414.html" class="lessionLink">Phương trình mặt phẳng</a></label>
+
+
+                                            </div>
+                                            <div class="checkbox-control">
+                                                <input type="checkbox" name="cbLession[]" value="1415" class="custom-control-input" id="group7-3">
+                                                <label for="group7-3" class="custom-control-label"><a href="https://tracnghiem.net/de-kiem-tra/trac-nghiem-phuong-trinh-duong-thang-trong-khong-gian-1415.html" class="lessionLink">Phương trình đường thẳng trong không gian</a></label>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/CONTENT 4-->
+
+                        </div>
+                        <div class="center-btn" id="btnStartExam">
+                            <a href="https://localhost:44307/TracNghiem/ChonBai/10" class="btn orange">Lọc bài làm</a>
+                            <a href="https://localhost:44307/TracNghiem/ChonBai/9"id="Enter" class="btn btn-success btn-lg" style=" min-width: 0.1px; right: 153px; width: 20px; position: relative; z-index: 1; background: #ffb83c; border: none"></a>
+                        </div>
+                        <h2 style="margin-bottom:50px"></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3 class="title15Bold red"></h3>
+</div>
+
+<div class="content-two-columns" style="height: auto !important;">
+    <div class="container" style="height: auto !important;">
+        <div class="row" style="height: auto !important;">
+            <!--LEFT CONTENT-->
+            <div class="cot-trai">
+                <!--ENGLISH TEST SKILL-->
+                <div class="skill-test-lists common-test-detail">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-12 col-lg-12 col-sm-12">
+
+                            <div> <h1 class="title22Bold mb-2"></h1></div>
+                            <div class="row">
+                                <div class="d9Box part-item">
+                                    <a href="@Url.Action("ChonBai", "TracNghiem", new { id = item.BaiId })"><h2 class="title22Bold c065">@item.TenBai</h2></a>
+                                    <p class="mt-2">@item.NguoiTao</p>
+                                    <div class="view-detail">
+                                        <div class="num-exam">@item.NgayTao</div>
+                                        <div class="num-attempt">@item.LuoiThi</div>
+                                    </div>
+                                    <div class="brLine margin-bottom-28"></div>
+                                    <div class="progress-box">
+                                        <span>0/@item.SoCauHoi</span>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 0%">
+                                                <!--gray or green-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="@Url.Action("ChonBai", "TracNghiem", new { id = item.BaiId })" class="btn orange">Bắt đầu thi</a>
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    }
+                    <!--/PART 2-->
+                    <ul class="pagination margin-left-auto">
+
+                        <li class="page-item disabled">
+                            <a class="page-link" href="javascript:void(0)" onclick="onClickPrev()" aria-label="Previous">
+                                <span aria-hidden="true">«</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item active">
+                            <a class="page-link" href="https://tracnghiem.net/thptqg/toan-hoc/?p=1">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="https://tracnghiem.net/thptqg/toan-hoc/?p=2">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="https://tracnghiem.net/thptqg/toan-hoc/?p=3">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="https://tracnghiem.net/thptqg/toan-hoc/?p=4">4</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="https://tracnghiem.net/thptqg/toan-hoc/?p=5">5</a>
+                        </li>
+                        <li class="page-item ">
+                            <a class="page-link" href="javascript:void(0)" onclick="onClickNext()" aria-label="Next">
+                                <span aria-hidden="true">»</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--/ENGLISH TEST SKILL-->
+    </div>
+
+</div>
+
+<!--/LEFT CONTENT-->
+@section MyScritps
+{
+    <script language="javascript">
+
+
+        // Chức năng chọn hết
+        document.getElementById("checkAllForCollapse1", "collapse1").onclick = function () {
+            // Lấy danh sách checkbox
+            var checkboxes = document.getElementsByName('cbLession1[]');
+            console.log(checkboxes);
+            // Lặp và thiết lập checked
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = true;
+            }
+        };
+
+        document.getElementById("checkAllForCollapse2", "collapse2").onclick = function () {
+            // Lấy danh sách checkbox
+            var checkboxes = document.getElementsByName('cbLession2[]');
+            console.log(checkboxes);
+            // Lặp và thiết lập checked
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = true;
+            }
+        };
+
+        document.getElementById("checkAllForCollapse3", "collapse3").onclick = function () {
+            // Lấy danh sách checkbox
+            var checkboxes = document.getElementsByName('cbLession3[]');
+            console.log(checkboxes);
+            // Lặp và thiết lập checked
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = true;
+            }
+        };
+
+        document.getElementById("checkAllForCollapse4", "collapse4").onclick = function () {
+            // Lấy danh sách checkbox
+            var checkboxes = document.getElementsByName('cbLession4[]');
+            console.log(checkboxes);
+            // Lặp và thiết lập checked
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = true;
+            }
+        };
+
+        document.getElementById("checkAllForCollapse5", "collapse5").onclick = function () {
+            // Lấy danh sách checkbox
+            var checkboxes = document.getElementsByName('cbLession5[]');
+            console.log(checkboxes);
+            // Lặp và thiết lập checked
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = true;
+            }
+        };
+
+        document.getElementById("checkAllForCollapse6", "collapse6").onclick = function () {
+            // Lấy danh sách checkbox
+            var checkboxes = document.getElementsByName('cbLession2[]');
+            console.log(checkboxes);
+            // Lặp và thiết lập checked
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = true;
+            }
+        };
+
+        document.getElementById("checkAllForCollapse7", "collapse7").onclick = function () {
+            // Lấy danh sách checkbox
+            var checkboxes = document.getElementsByName('cbLession7[]');
+            console.log(checkboxes);
+            // Lặp và thiết lập checked
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = true;
+            }
+        };
+
+
+        document.getElementById("radio-random").onclick = function () {
+            document.getElementById('chapterLessionWrapper').style.display = 'block';
+
+        }
+
+        document.getElementById("radio-sample").onclick = function () {
+            document.getElementById('chapterLessionWrapper').style.display = 'none';
+
+        }
+
+
+
+    </script>
+}

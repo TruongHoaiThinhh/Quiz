@@ -1,0 +1,141 @@
+﻿@model DoAn.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+<style>
+    .btn.social-btn {
+        width: 100%;
+        height: 57px;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 19px;
+        line-height: 1.79;
+        margin-top: 44px;
+        margin-bottom: 29px;
+        padding: initial;
+        font-weight: normal;
+    }
+
+    .btn.signin-btn {
+        background-color: #f86060;
+    }
+
+    .bd-r {
+        border: 1px #e1e1e1 solid;
+        border-radius: 17px;
+        text-align: center;
+        font-family: Nunito, sans-serif;
+        margin-top: 40px;
+        margin-bottom: 71px;
+        width: auto;
+    }
+
+    .btn.social-btn {
+        width: 80%;
+        height: 57px;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 19px;
+        line-height: 1.79;
+        margin-top: 44px;
+        margin-bottom: 29px;
+        padding: initial;
+        font-weight: normal;
+    }
+
+    .btn.facebook-btn {
+        background-color: #375aab;
+    }
+
+    .login-or {
+        position: relative;
+        color: #aaa;
+        margin-top: 11px;
+        margin-bottom: 27px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .hr-or {
+        height: 1px;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+    }
+
+    .span-or-signup {
+        display: block;
+        position: absolute;
+        left: 42%;
+        top: 2px;
+        margin-left: -25px;
+        background-color: #fff;
+        width: 145px;
+        text-align: center;
+    }
+</style>
+
+
+<div class="row" style="margin-top:100px; ">
+    <div class="col-lg-5 col-sm-12 col-md-12 mx-auto" style="margin-left:30%;">
+        <div class="bd-r">
+            <section id="loginForm">
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h4 style=" display: flex; justify-content: center; margin-top:50px;">Đăng ký miễn phí!</h4>
+                    <button class="btn facebook-btn social-btn" onclick="loginFacebook('#')">
+                        <span>Đăng nhập nhanh bằng Facebook</span>
+                    </button>
+
+                    <div class="login-or">
+                        <hr class="hr-or">
+                        <span class="span-or-signup">hoặc đăng ký mới</span>
+                    </div>
+
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col-md-8" style="margin-left:130px;">
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Họ Tên " })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-8" style="margin-left:130px;">
+                            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @placeholder = "Số điện thoại" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-8" style="margin-left:130px;">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-8" style="margin-left:130px;">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Mật khẩu" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-8" style="margin-left:130px;">
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Xác Nhận Mất khẩu" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8 col-md-offset-2">
+                            <input type="submit" class="btn signin-btn social-btn" value="Đăng ký" />
+                        </div>
+                    </div>
+                }
+            </section>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

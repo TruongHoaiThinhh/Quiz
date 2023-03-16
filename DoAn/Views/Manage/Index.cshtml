@@ -1,0 +1,869 @@
+﻿@model DoAn.Models.IndexViewModel
+@{
+    ViewBag.Title = "Manage";
+}
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<!--
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h4>Change your account settings</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Password:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Change your password", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Create", "SetPassword")
+            }
+            ]
+        </dd>
+        <dt>External Logins:</dt>
+        <dd>
+            @Model.Logins.Count [
+            @Html.ActionLink("Manage", "ManageLogins") ]
+        </dd>
+        @*
+            Phone Numbers can used as a second factor of verification in a two-factor authentication system.
+
+             See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                for details on setting up this ASP.NET application to support two-factor authentication using SMS.
+
+             Uncomment the following block after you have set up two-factor authentication
+        *@
+        @*
+            <dt>Phone Number:</dt>
+            <dd>
+                @(Model.PhoneNumber ?? "None")
+                @if (Model.PhoneNumber != null)
+                {
+                    <br />
+                    <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
+                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
+                    }
+                }
+                else
+                {
+                    <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
+                }
+            </dd>
+        *@
+        <dt>Two-Factor Authentication:</dt>
+        <dd>
+            <p>
+                There are no two-factor authentication providers configured. See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                for details on setting up this ASP.NET application to support two-factor authentication.
+            </p>
+            @*@if (Model.TwoFactor)
+                {
+                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>Enabled
+                        <input type="submit" value="Disable" class="btn btn-link" />
+                        </text>
+                    }
+                }
+                else
+                {
+                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>Disabled
+                        <input type="submit" value="Enable" class="btn btn-link" />
+                        </text>
+                    }
+                }*@
+        </dd>
+    </dl>
+</div>
+    -->
+
+
+<h2></h2>
+<style>
+    .gray {
+        background: #f7f8f9;
+    }
+
+    .pt-4 {
+        padding-top: 1.5rem !important;
+    }
+
+    section {
+        padding: 50px 0 50px;
+        position: relative;
+    }
+
+    .container-fluid {
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+        padding-right: 15px;
+        padding-left: 15px;
+        width: 100%;
+    }
+
+    .row {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    .col-lg-3 {
+        -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+
+    .dashboard-navbar, .dashboard-wraper {
+        position: relative;
+        width: 100%;
+        padding: 2em 0rem;
+        background: #ffffff;
+        border-radius: 0.2rem;
+    }
+
+    .d-user-avater {
+        text-align: center;
+        margin: 2em 0;
+        padding: 0 1rem;
+    }
+
+    .user-avater {
+        position: relative;
+        cursor: pointer;
+    }
+
+    .d-user-avater img {
+        max-width: 120px;
+        border-radius: 50%;
+        margin-bottom: 8px;
+    }
+
+    .img-fluid {
+        width: 100%;
+    }
+
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+
+    img {
+        vertical-align: middle;
+        border-style: none;
+    }
+
+    .user-avater .fas.fa-camera {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        font-size: 28px;
+        cursor: pointer;
+        opacity: .5;
+        transition: all .5s;
+    }
+
+    .fa, .fas {
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+    }
+
+    .fa, .fab, .fal, .far, .fas {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+    }
+
+    .fa-camera:before {
+        content: "\f030";
+    }
+
+    *, ::after, ::before {
+        box-sizing: inherit;
+    }
+
+    #change-avatar-input {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    button, input {
+        overflow: visible;
+    }
+
+    button, input, optgroup, select, textarea {
+        margin: 0;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+    }
+
+    [role=button], a, area, button, input, label, select, summary, textarea {
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+    }
+
+    .d-user-avater h4 {
+        margin: 10px 0 3px 0;
+        font-size: 17px;
+    }
+
+    h4 {
+        line-height: 2.6rem;
+        font-size: 2.1rem;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: #333d46;
+        font-weight: 600;
+        text-transform: capitalize;
+        font-family: var(--font-main);
+    }
+
+    .elso_syu89 ul li {
+        display: inline-block;
+        padding: 0 4px;
+        list-style: none;
+    }
+
+    .elso_syu89 ul li {
+        padding: 0 2px;
+    }
+
+    li {
+        display: list-item;
+        text-align: -webkit-match-parent;
+    }
+
+    .elso_syu89 ul li > a {
+        width: 38px;
+        height: 38px;
+        border-radius: 4px;
+        color: #738090 !important;
+        border: 1px solid #e7ebef;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    [role=button], a, area, button, input, label, select, summary, textarea {
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+    }
+
+    .d-navigation {
+        position: relative;
+        padding: 0 1rem;
+    }
+
+        .d-navigation ul {
+            padding: 0;
+            margin: 0;
+        }
+
+    p, ul, ol, dl, dt, dd, blockquote, address {
+        margin: 0 0 10px;
+    }
+
+    ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    dl, ol, ul {
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+
+    .d-navigation ul li {
+        list-style: none;
+        padding: 0;
+    }
+
+
+        .d-navigation ul li a {
+            padding: 12px 5px;
+            font-size: 1.3rem;
+        }
+
+        .d-navigation ul li a {
+            width: 100%;
+        }
+
+        .d-navigation ul li a {
+            padding: 3px 0;
+            color: #144273;
+            font-size: 13px;
+            border-radius: 0.3rem;
+            padding: 14px 15px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+    a {
+        color: #30384e;
+        text-decoration: none;
+        background-color: transparent;
+        -webkit-text-decoration-skip: objects;
+    }
+
+    .d-navigation ul li a i {
+        margin-right: 5px;
+    }
+
+    .fa, .fas {
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+    }
+
+    .fa-th:before {
+        content: "\f00a";
+    }
+
+    .d-navigation ul li {
+        list-style: none;
+        padding: 0;
+    }
+
+    .dropdown, .dropup {
+        position: relative;
+    }
+
+    d-navigation ul li a {
+        padding: 12px 5px;
+        font-size: 1.3rem;
+    }
+
+    .d-navigation ul li a {
+        padding: 3px 0;
+        color: #144273;
+        font-size: 13px;
+        border-radius: 0.3rem;
+        padding: 14px 15px;
+        font-weight: 600;
+        display: inline-block;
+    }
+
+    ul.nav.nav-second-level.collapse {
+        display: none;
+    }
+
+    .d-navigation ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .d-navigation ul li {
+        list-style: none;
+        padding: 0;
+    }
+
+    .nav-second-level li {
+        display: block;
+        width: 100%;
+    }
+
+    .d-navigation ul li a {
+        padding: 12px 5px;
+        font-size: 1.3rem;
+    }
+
+    .d-navigation ul li a {
+        width: 100%;
+    }
+
+    .d-navigation ul li a {
+        padding: 3px 0;
+        color: #144273;
+        font-size: 13px;
+        border-radius: 0.3rem;
+        padding: 14px 15px;
+        font-weight: 600;
+        display: inline-block;
+    }
+
+    .nav-second-level li a {
+        color: #787e94 !important;
+    }
+
+    .d-navigation ul li a i {
+        margin-right: 5px;
+    }
+
+    .col-lg-9 {
+        -ms-flex: 0 0 75%;
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+
+    .row {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    .col-lg-6 {
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .dashboard_wrap {
+        padding: 1rem 1rem;
+        background-color: #ffffff;
+        border-radius: 10px;
+        width: 80%;
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .justify-content-center {
+        -ms-flex-pack: center !important;
+        justify-content: center !important;
+    }
+
+    .col-lg-12 {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .d-navigation ul li {
+        list-style: none;
+        padding: 0;
+    }
+
+    .dropdown, .dropup {
+        position: relative;
+    }
+
+    .d-navigation ul li a {
+        padding: 12px 5px;
+        font-size: 1.3rem;
+    }
+
+
+    .d-navigation ul li a {
+        width: 100%;
+    }
+
+    .d-navigation ul li a {
+        padding: 3px 0;
+        color: #144273;
+        font-size: 13px;
+        border-radius: 0.3rem;
+        padding: 14px 15px;
+        font-weight: 600;
+        display: inline-block;
+    }
+
+        .d-navigation ul li a i {
+            margin-right: 5px;
+        }
+
+    .fa, .fas {
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+    }
+
+    .fa, .fab, .fal, .far, .fas {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+    }
+
+    .d-navigation ul li a span {
+        font-size: 12px;
+        float: right;
+        top: 5px;
+        position: relative;
+    }
+
+    [class*=" ti-"], [class^=ti-] {
+        font-family: themify;
+        speak: none;
+        font-style: normal;
+        font-weight: 400;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .ti-angle-left:before {
+        content: "\e64a";
+    }
+
+    *, ::after, ::before {
+        box-sizing: inherit;
+    }
+
+    ul.nav.nav-second-level.collapse {
+        display: none;
+    }
+
+    .d-navigation ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    #change-avatar-input {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .ti-facebook:before {
+        content: "\e741";
+    }
+
+    .ti-twitter:before {
+        content: "\e72a";
+    }
+
+    .ti-linkedin:before {
+        content: "\e735";
+    }
+
+    ul.nav.nav-second-level.collapse.show {
+        display: block;
+    }
+
+    ul.nav.nav-second-level.collapse {
+        display: none;
+    }
+
+    .collapse.show {
+        display: block;
+    }
+
+    .d-navigation ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .elso_syu89 ul li > a {
+        width: 38px;
+        height: 38px;
+        border-radius: 4px;
+        color: #738090 !important;
+        border: 1px solid #e7ebef;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    a.link:hover, a.link:focus, a:hover, a:focus {
+        color: var(--color-main);
+    }
+
+    a:hover, a:focus {
+        text-decoration: none;
+    }
+
+    .dashboard_stats_wrap {
+        display: inline-block;
+        padding: 1.5rem 1rem;
+        background-color: #ffffff;
+        border-radius: 10px;
+        width: 100%;
+        position: relative;
+        margin-bottom: 20px;
+        overflow: hidden;
+        transition: .3s;
+        cursor: default;
+        text-align: center;
+    }
+
+    .theme-bg {
+        background: #f26c4f !important;
+    }
+
+    .p-4 {
+        padding: 1.5rem !important;
+    }
+
+    .mb-2 {
+        margin-bottom: 0.5rem !important;
+    }
+
+    .align-items-center {
+        -ms-flex-align: center !important;
+        align-items: center !important;
+    }
+
+    .justify-content-center {
+        -ms-flex-pack: center !important;
+        justify-content: center !important;
+    }
+
+    .d-inline-flex {
+        display: -ms-inline-flexbox !important;
+        display: inline-flex !important;
+    }
+
+    .rounded-circle {
+        border-radius: 50%;
+    }
+
+    * {
+        outline: none;
+    }
+
+    .text-white {
+        color: #ffffff !important;
+    }
+
+    .position-absolute {
+        position: absolute !important;
+    }
+
+
+    .h5, h5 {
+        font-size: 1.25rem;
+    }
+
+
+    element.style {
+    }
+
+    .dashboard_stats_wrap_content h4 {
+        font-size: 35px;
+        font-weight: 600;
+        padding: 0;
+        margin: 0;
+        color: #22374e;
+        letter-spacing: 1px;
+    }
+
+    .dashboard_stats_wrap_content span {
+        font-size: 14px;
+        margin-top: 4px;
+        line-height: 24px;
+        font-weight: 500;
+        display: inline-block;
+    }
+
+    .bg-success {
+        background-color: #27b737 !important;
+    }
+
+    .bg-warning {
+        background-color: #ff9b20 !important;
+    }
+
+    .bg-purple {
+        background-color: #7460ee !important;
+    }
+</style>
+
+
+
+
+<section class="gray pt-4">
+    <div class="container-fluid">
+
+        <div class="row" style="margin-top: 80px">
+
+            <div class="col-lg-3 col-md-3">
+                <div class="dashboard-navbar">
+                    <div class="d-user-avater">
+                        <div class="user-avater">
+                            <img src="https://tracnghiemhay.com/user_avatar/6346c8278b53f.jpg" class="img-fluid avater" alt="">
+                            <i class="fas fa-camera"></i>
+                            <input type="file" name="change-avatar-input" id="change-avatar-input">
+                        </div>
+                        <h4>Thịnh Trương</h4>
+                        <div class="elso_syu89">
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="d-navigation">
+                        <ul id="side-menu">
+
+                            <li class="">
+                                <a href="https://localhost:44307/Manage">
+                                    <i class="fas fa-th"></i>
+                                    Trang chủ
+                                </a>
+                            </li>
+
+
+                            <li class="">
+                                <a href="https://localhost:44307/Manage/Info">
+                                    <i class="fas fa-address-card"></i>
+                                    Thông tin của tôi
+                                    <!--<span class="fas fa-angle-left"></span> -->
+                                </a>
+                            </li>
+
+
+                            <li class="">
+                                <a href="https://localhost:44307/Manage/ChangePassword">
+                                    <i class="fa fa-shield-alt"></i>
+                                    Bảo mật
+                                    <!--<span class="fas fa-angle-left"></span> -->
+                                </a>
+                            </li>
+
+
+                            <li class="">
+                                <a href="https://localhost:44307/Manage/History">
+                                    <i class="fas fa-archive"></i>
+                                    Danh sách bài thi
+                                    <!--<span class="fas fa-angle-left"></span> -->
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+            <div class="col-xl-5 col-lg-6 col-md-12">
+                <div class="dashboard_wrap">
+
+                    <div class="row justify-content-center">
+                        <div class="col-xl-12 col-lg-12 col-md-12">
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                                <div class="dashboard_stats_wrap" style="margin-left:44%">
+                                    <div class="rounded-circle p-4 p-sm-4 d-inline-flex align-items-center justify-content-center theme-bg mb-2"><div class="position-absolute text-white h5 mb-0"><i class="fas fa-book"></i></div></div>
+                                    <div class="dashboard_stats_wrap_content"><h4>0</h4> <span>Tổng số bài thi</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="dashboard_wrap">
+
+                    <div class="row justify-content-center">
+                        <div class="col-xl-12 col-lg-12 col-md-12">
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                                <div class="dashboard_stats_wrap" style="margin-left: 44%">
+                                    <div class="rounded-circle p-4 p-sm-4 d-inline-flex align-items-center justify-content-center bg-success mb-2"><div class="position-absolute text-white h5 mb-0"><i class="fas fa-check-square"></i></div></div>
+                                    <div class="dashboard_stats_wrap_content"><h4>0</h4> <span>Đã hoàn thành</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="dashboard_wrap">
+
+                    <div class="row justify-content-center">
+                        <div class="col-xl-12 col-lg-12 col-md-12">
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                                <div class="dashboard_stats_wrap" style="margin-left: 44%">
+                                    <div class="rounded-circle p-4 p-sm-4 d-inline-flex align-items-center justify-content-center bg-warning mb-2"><div class="position-absolute text-white h5 mb-0"><i class="fas fa-play-circle"></i></div></div>
+                                    <div class="dashboard_stats_wrap_content"><h4>0</h4> <span>Chưa hoàn thành</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="dashboard_wrap">
+
+                    <div class="row justify-content-center">
+                        <div class="col-xl-12 col-lg-12 col-md-12">
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                                <div class="dashboard_stats_wrap" style="margin-left: 44%">
+                                    <div class="rounded-circle p-4 p-sm-4 d-inline-flex align-items-center justify-content-center bg-purple mb-2"><div class="position-absolute text-white h5 mb-0"><i class="fas fa-gem"></i></div></div>
+                                    <div class="dashboard_stats_wrap_content"><h4>0.0</h4> <span>Điểm trung bình</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+        </div>
+
+    </div>
+</section>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<DoAn.Models.LoaiBai>
+@{
+    ViewBag.Title = "DanhMuc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Style.css" rel="stylesheet" />
+
+<div class="breadcrumb">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="https://tracnghiem.net/">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="https://tracnghiem.net/thptqg/">Thi THPTQG </a></li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+
+<div class="content-two-columns" style="height: auto !important;">
+    <div class="container" style="height: auto !important;">
+        <div class="row" style="height: auto !important;">
+            <!--LEFT CONTENT-->
+            <div class="cot-trai">
+                <!--ENGLISH TEST SKILL-->
+                <div class="skill-test-lists common-test-detail">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-12 col-lg-12 col-sm-12">
+
+                            <div> <h1 class="title22Bold mb-2"></h1></div>
+                            <div class="row">
+                                <div class="d9Box part-item">
+                                    <a href="@Url.Action("DanhSachBai", "TracNghiem", new { id = item.LoaiBaiId })"><h2 class="title22Bold c065">@item.TenLoaiBai</h2></a>
+                                    <div class="view-detail">
+                                    </div>
+                                    <div class="brLine margin-bottom-28"></div>
+                                    <div class="progress-box">
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 0%">
+                                                <!--gray or green-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="@Url.Action("DanhSachBai", "TracNghiem", new { id = item.LoaiBaiId })" class="btn orange">Xem Chi Tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <!--/ENGLISH TEST SKILL-->
+    </div>
+    <!--/LEFT CONTENT-->
+    <!--LEFT CONTENT-->
+    <div class="cot-phai" style="height: auto !important;">
+        <nav id="sidebar" class="sidebar-right" style="height: auto !important;">
+            <zone id="kunrhqdl"></zone>
+            <script>arfAsync.push("kunrhqdl");</script>
+    </div>
+    </nav>
+</div>
+<!--/LEFT CONTENT-->

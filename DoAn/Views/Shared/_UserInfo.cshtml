@@ -1,0 +1,39 @@
+﻿
+@using DoAn.ModelsView
+@{
+    DoAn.ModelsView.ViewModels.UserVM userConnected = Session["UserConnected"] as DoAn.ModelsView.ViewModels.UserVM;
+    DoAn.ModelsView.ViewModels.BaiVM quizSelected = Session["ChonBai"] as DoAn.ModelsView.ViewModels.BaiVM;
+
+}
+
+
+<div class="row">
+
+
+    <div class="col-md-5" style="margin-top: 15px; margin-bottom: 15px; margin-left: 15px; ">
+
+        @if (quizSelected != null && !string.IsNullOrEmpty(quizSelected.TenBai))
+        {
+            <span><b style="display: flex; alihn-content: center">Bài Đang Làm:</b> @quizSelected.TenBai</span>
+        }
+
+        else
+        {
+        }
+
+        </div>
+
+    <div class="col-md-4" style="margin-top: 15px;">
+        <b>Thời gian Làm Bài Còn Lại:</b>
+        <div class="time-remain">
+            <div class="time" id="time">
+                <i class="fa fa-clock-o" aria-hidden="true"></i><span id="timer">90:00</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

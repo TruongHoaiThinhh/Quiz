@@ -1,0 +1,177 @@
+﻿<link href="~/Content/Style.css" rel="stylesheet" />
+<!DOCTYPE html>
+
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trắc nghiệm Online</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+<body>
+    <link href="~/Areas/Admin/Content/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <!------ Include the above in your HEAD tag ---------->
+
+    <nav class="navbar navbar-default navbar-fixed-top bg-white" role="navigation">
+        <div class="container">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <img src="~/Areas/Admin/Content/img/logo.png" style="max-width: 50px; height: auto; " />
+                    @Html.ActionLink("TRACNGHIEM", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="@Url.Action("DanhMuc", "TracNghiem", new { id = 1 })" class="dropdown-toggle">THI THPTQG<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("DanhSachBai", "TracNghiem", new { id = 1 })">THPT QG Môn Toán</a></li>
+                                <li><a href="@Url.Action("DanhSachBai", "TracNghiem", new { id = 5 })">THPT QG Môn Tiếng Anh</a></li>
+                                <li><a href="@Url.Action("DanhSachBai", "TracNghiem", new { id = 2 })">THPT QG Môn Lý</a></li>
+                                <li><a href="@Url.Action("DanhSachBai", "TracNghiem", new { id = 3 })">THPT QG Môn Hóa</a></li>
+                                <li class="divider"></li>
+                                <li><a href="@Url.Action("DanhSachBai", "TracNghiem", new { id = 4 })">THPT QG Môn Sinh</a></li>
+                                <li><a href="@Url.Action("DanhSachBai", "TracNghiem", new { id = 6 })">THPT QG Môn Sử</a></li>
+                                <li><a href="@Url.Action("DanhSachBai", "TracNghiem", new { id = 7 })">THPT QG Môn Địa</a></li>
+                                <li><a href="@Url.Action("DanhSachBai", "TracNghiem", new { id = 8 })">THPT QG Môn GDCD</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">ĐỀ THI KIỂM TRA</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">ENGLISH TEST<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">TOEIC</a></li>
+                                <li><a href="#">Ngữ pháp Tiếng Anh</a></li>
+                                <li><a href="#">Từ vựng Tiếng Anh</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">IT TEST<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Quản trị hệ thống</a></li>
+                                <li><a href="#">Lập trình</a></li>
+                                <li><a href="#">Tin học văn phòng</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">ĐẠI HỌC<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Luật - Môn khác</a></li>
+                                <li><a href="#">Xã hội nhân văn</a></li>
+                                <li><a href="#">Khoa học - Kỹ thuật</a></li>
+                                <li><a href="#">Kế toán - Kiểm toán</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Tài chính - Ngân hàng</a></li>
+                                <li><a href="#">Kinh tế - Thương mại</a></li>
+                                <li><a href="#">Các môn Đại cương</a></li>
+                                <li><a href="#">Quản trị - Marketing</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">HƯỚNG NGHIỆP<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Trắc nghiệm công thức</a></li>
+                                <li><a href="#">Trắc nghiệm bằng lái</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+            <div class="google-auto-placed" style="width: 100%; height: auto !important; clear: both; text-align: center;">
+                <ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-0544800746257379" data-adsbygoogle-status="done" style="display: none !important; margin: 10px auto; background-color: transparent; height: 280px;" data-ad-status="filled"><ins id="aswift_1_expand" tabindex="0" title="Advertisement" aria-label="Advertisement" style="border: none; height: 280px; width: 1110px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-table;"><ins id="aswift_1_anchor" style="border: none; height: 280px; width: 1110px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: block; overflow: visible;"><iframe id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;border:0;width:1110px;height:280px" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="1110" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" src="https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-0544800746257379&amp;output=html&amp;h=280&amp;adk=1553151457&amp;adf=558060627&amp;pi=t.aa~a.1043414356~rp.4&amp;w=1110&amp;fwrn=4&amp;fwrnh=100&amp;lmt=1650880424&amp;rafmt=1&amp;to=qs&amp;pwprc=5681150659&amp;psa=1&amp;format=1110x280&amp;url=https%3A%2F%2Ftracnghiem.net%2F&amp;fwr=0&amp;pra=3&amp;rpe=1&amp;resp_fmts=3&amp;wgl=1&amp;fa=40&amp;uach=WyJXaW5kb3dzIiwiMTAuMC4wIiwieDg2IiwiIiwiOTkuMC40ODQ0Ljg0IixbXSxudWxsLG51bGwsIjY0IixbWyIgTm90IEE7QnJhbmQiLCI5OS4wLjAuMCJdLFsiQ2hyb21pdW0iLCI5OS4wLjQ4NDQuODQiXSxbIk9wZXJhIEdYIiwiOTkuMC40ODQ0Ljg0Il1dLGZhbHNlXQ..&amp;dt=1650880424396&amp;bpp=3&amp;bdt=268&amp;idt=131&amp;shv=r20220420&amp;mjsv=m202204190101&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;cookie=ID%3Df67be6cf532f69b7-229cf72a60d1009d%3AT%3D1648356351%3ART%3D1648356351%3AS%3DALNI_MZxMJmxuTvQhanJ5X0uDiLRhgKQUw&amp;prev_fmts=0x0&amp;nras=2&amp;correlator=915220029869&amp;frm=20&amp;pv=1&amp;ga_vid=986556045.1648356356&amp;ga_sid=1650880425&amp;ga_hid=828777002&amp;ga_fc=1&amp;u_tz=420&amp;u_his=2&amp;u_h=1080&amp;u_w=1920&amp;u_ah=1040&amp;u_aw=1920&amp;u_cd=24&amp;u_sd=1&amp;dmc=8&amp;adx=377&amp;ady=140&amp;biw=1864&amp;bih=939&amp;scr_x=0&amp;scr_y=0&amp;eid=44759875%2C44759926%2C44759837%2C44761792%2C44761044%2C31067204%2C31061828&amp;oid=2&amp;pvsid=2030076563067683&amp;pem=965&amp;tmod=786866190&amp;uas=0&amp;nvt=1&amp;eae=0&amp;fc=1920&amp;brdim=0%2C0%2C0%2C0%2C1920%2C0%2C1920%2C1040%2C1879%2C939&amp;vis=1&amp;rsz=%7C%7Cs%7C&amp;abl=NS&amp;fu=128&amp;bc=31&amp;ifi=2&amp;uci=a!2&amp;fsb=1&amp;xpc=DOamIX0JqD&amp;p=https%3A//tracnghiem.net&amp;dtd=135" data-google-container-id="a!2" data-google-query-id="CJfErer4rvcCFQQPXAodSzsPgw" data-load-complete="true"></iframe></ins></ins></ins>
+            </div>
+        </div>
+    </nav>
+
+
+
+    @RenderBody()
+    <hr />
+
+    <footer>
+        <div class="footer-logo">
+            <img src="https://s.tracnghiem.net/assets/images/footer/trac-nghiem-online.png" alt="Trắc Nghiệm Online">
+        </div>
+        <div class="container">
+            <div class="footer-nav">
+                <div class="row">
+                    <div class="col-6 col-lg-2 col-sm-6">
+                        <h4><a href="https://www.tracnghiem.net/thptqg/">Thi THPT QG</a></h4>
+                        <a href="https://tracnghiem.net/thptqg/toan-hoc/">Môn Toán-Văn-Anh</a>
+                        <a href="https://tracnghiem.net/thptqg/vat-ly/">Môn Lý-Hoá-Sinh</a>
+                        <a href="https://tracnghiem.net/thptqg/lich-su/">Môn Sử-Địa-GDCD</a>
+                    </div>
+                    <div class="col-6 col-lg-2 col-sm-6">
+                        <h4><a href="https://www.tracnghiem.net/de-kiem-tra/">Đề kiểm tra</a></h4>
+                        <a href="https://tracnghiem.net/de-kiem-tra/toan-hoc-lop-11/">Đề thi HK1, HK2</a>
+                        <a href="https://tracnghiem.net/de-kiem-tra/vat-ly-lop-12/">Kiểm tra 1 tiết</a>
+                        <a href="https://tracnghiem.net/de-kiem-tra/tieng-anh-lop-10/">Kiểm tra 15 phút</a>
+                    </div>
+                    <div class="col-6 col-lg-2 col-sm-6">
+                        <h4><a href="https://www.tracnghiem.net/tieng-anh/">English Test</a></h4>
+                        <a href="https://tracnghiem.net/tieng-anh/ngu-phap-tieng-anh/">Ngữ pháp tiếng Anh</a>
+                        <a href="https://tracnghiem.net/tieng-anh/tu-vung-tieng-anh/">Từ vựng Tiếng Anh</a>
+                        <a href="https://tracnghiem.net/thptqg/tieng-anh/">Tiếng Anh THPT QG</a>
+                    </div>
+                    <div class="col-6 col-lg-2 col-sm-6">
+                        <h4><a href="https://www.tracnghiem.net/cntt/">IT Test</a></h4>
+                        <a href="https://tracnghiem.net/cntt/tin-hoc-van-phong/">Tin học văn phòng</a>
+                        <a href="https://tracnghiem.net/cntt/lap-trinh/">Lập trình Web/App</a>
+                        <a href="https://tracnghiem.net/cntt/quan-tri-he-thong/">Quản trị hệ thống</a>
+                    </div>
+                    <div class="col-6 col-lg-2 col-sm-6">
+                        <h4><a href="https://www.tracnghiem.net/dai-hoc/">Đại học</a></h4>
+                        <a href="https://tracnghiem.net/dai-hoc/mon-dai-cuong/">Môn đại cương</a>
+                        <a href="https://tracnghiem.net/dai-hoc/kinh-te-thuong-mai/">Chuyên ngành Kinh tế</a>
+                        <a href="https://tracnghiem.net/dai-hoc/khoa-hoc-ky-thuat/">Chuyên ngành Kỹ thuật</a>
+                    </div>
+                    <div class="col-6 col-lg-2 col-sm-6">
+                        <h4><a href="https://www.tracnghiem.net/huong-nghiep/">Hướng nghiệp</a></h4>
+                        <a href="https://tracnghiem.net/huong-nghiep/trac-nghiem-bang-lai/">Bằng lái xe máy/môtô</a>
+                        <a href="https://tracnghiem.net/huong-nghiep/trac-nghiem-cong-chuc/">Thi Công/Viên chức</a>
+                        <a href="https://tracnghiem.net/huong-nghiep/600-cau-trac-nghiem-ly-thuyet-bang-lai-xe-oto-b2-c-d-e-co-dap-an-2020-19.html">Bằng lái xe Ô tô</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                Copyright © 2022 by Tracnghiem
+            </div>
+        </div>
+    </footer>
+
+    <script defer src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+>
+
+    </script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("MyScritps", required: false)
+</body>
+
+
+</html>

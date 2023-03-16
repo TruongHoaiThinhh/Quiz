@@ -1,0 +1,293 @@
+﻿@model DoAn.ModelsView.ViewModels.BaiVM
+@{
+    ViewBag.Title = "BaiTheoPack";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Style.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+<style>
+    .sidebar-right .card-group-item {
+        border: 1px solid #d9d9d9;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        -khtml-border-radius: 5px;
+        margin-bottom: 25px;
+    }
+
+    .sidebar-right .card-header:first-child {
+        height: auto;
+        min-height: 43px;
+        background: #3a4bcd;
+        padding: 10px 0 7px;
+    }
+
+    .card-header:first-child {
+        border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+    }
+
+    .card-header {
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 0;
+        background-color: rgba(0,0,0,.03);
+        border-bottom: 1px solid rgba(0,0,0,.125);
+    }
+
+    .exam-top-list.hasScrollingBar {
+        height: auto;
+    }
+
+    .sidebar-right .hasScrollingBar {
+        height: 310px;
+        margin-right: 10px;
+    }
+
+    .hasScrollingBar {
+        position: relative;
+        height: 100vh;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+    }
+
+    .exam-top-list .top-header, .exam-top-list .row-content {
+        display: flex;
+    }
+    .exam-top-list .top-header {
+        padding: 22px 5px 19px 3px;
+    }
+
+    .exam-top-list .exam-item {
+        margin-left: 18px;
+        margin-right: 8px;
+        padding-bottom: 11px;
+    }
+
+    .exam-top-list .top-header, .exam-top-list .row-content {
+        display: flex;
+    }
+
+        .exam-top-list .row-content .col.name {
+            text-align: left;
+            font-family: "Nunito", sans-serif;
+            font-size: 12px;
+            line-height: 1.33;
+            font-weight: 700;
+            padding-left: 0;
+        }
+
+        .exam-top-list .top-header .col.name, .exam-top-list .row-content .col.name {
+            text-align: left;
+            flex-basis: 35%;
+        }
+
+        .exam-top-list .row-content .col {
+            font-family: "Nunito", sans-serif;
+            font-size: 11px;
+            line-height: 1.36;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        .exam-top-list .top-header .col, .exam-top-list .row-content .col {
+            flex: 1;
+            font-family: "Nunito", sans-serif;
+            font-size: 11px;
+            line-height: 1.36;
+            font-weight: 700;
+            color: #0c0c0c;
+            text-align: center;
+        }
+
+        .exam-top-list .row-content .col {
+            font-family: "Nunito", sans-serif;
+            font-size: 11px;
+            line-height: 1.36;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        .exam-top-list .row-content .col {
+            font-family: "Nunito", sans-serif;
+            font-size: 11px;
+            line-height: 1.36;
+            font-weight: 400;
+            text-align: center;
+        }
+
+    .btn.gray {
+        font-family: "Nunito", sans-serif;
+        font-size: 13px;
+        line-height: 31px;
+        font-weight: 700;
+        color: #535353;
+        background: #f1f1f1;
+        padding: 0px 26px 0px 26px;
+        min-width: inherit;
+        height: auto;
+    }
+
+    .exam-top-list .btn {
+        margin: 4px auto 20px;
+        display: table;
+    }
+
+    .sidebar-right .try-it-now {
+        text-align: center;
+        padding: 20px 0 30px;
+    }
+
+    .sidebar-right .try-it-now {
+        text-align: center;
+        padding: 20px 0 30px;
+    }
+
+    .red {
+        color: #fe4500;
+    }
+
+    .sidebar-right .try-it-now .btn {
+        width: 100%;
+        margin-top: 12px;
+        height: 54px;
+        line-height: 54px;
+        font-size: 13px;
+    }
+
+    .btn:not(:disabled):not(.disabled) {
+        cursor: pointer;
+    }
+
+    .btn.orange {
+        background: #ffb83c;
+    }
+
+
+    element.style {
+    }
+
+    .sidebar-right .try-it-now .btn {
+        width: 100%;
+        margin-top: 12px;
+        height: 54px;
+        line-height: 54px;
+        font-size: 13px;
+    }
+
+    .btn.facebook-btn {
+        background-color: #375aab;
+    }
+
+    .exam-top-list .exam-item:after {
+        content: "";
+        border-bottom: 1px dotted #d9d9d9;
+        width: 98%;
+        height: 1px;
+        display: block;
+        margin-top: 14px;
+        margin-bottom: 6px;
+    }
+
+    .sidebar-right .card-header h2 {
+        text-align: center;
+        font-family: "Nunito", sans-serif;
+        font-size: 20px;
+        line-height: 27px;
+        font-weight: 700;
+        color: #fff;
+    }
+
+    .exam-top-list .row-content .col.name {
+        text-align: left;
+        font-family: "Nunito", sans-serif;
+        font-size: 12px;
+        line-height: 1.33;
+        font-weight: 700;
+        padding-left: 0;
+    }
+
+    .sidebar-right .try-it-now .btn {
+        width: 100%;
+        margin-top: 12px;
+        height: 54px;
+        line-height: 54px;
+        font-size: 13px;
+    }
+
+</style>
+
+
+
+<div class="breadcrumb">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="https://tracnghiem.net/">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="https://tracnghiem.net/thptqg/">Thi THPTQG </a></li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+
+<div class="content-two-columns" style="height: auto !important;">
+    <div class="container" style="height: auto !important;">
+        <div class="SelQuiz">
+
+            <div class="panel panel-default" style="width: 50%; margin: 10% 25%; text-align: center;">
+                <div class="panel-heading"><p class="red">Bạn có muốn chinh phục đề thi này</p></div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("ChonBai", "TracNghiem", FormMethod.Post))
+                    {
+                        @Html.DropDownListFor(model => model.BaiId, Model.ListOfBai, new { @class = "form-control", @style = "text-align: center" })<br />
+                        <button type="submit" id="Enter" class="btn btn-success btn-lg" style="width:100%;"><span class="glyphicon glyphicon-ok"></span> Có tôi muốn</button>}
+                </div>
+            </div>
+
+            <nav id="sidebar" class="sidebar-right" style="height: auto !important;">
+                <input type="hidden" name="schoolTestID" value="5691">
+                <article class="card-group-item" id="top-ranking">
+                    <header class="card-header">
+                        <h2 class="title">Top 10</h2>
+                    </header>
+                    <div class="exam-top-list hasScrollingBar">
+                        <div class="top-header">
+                            <div class="col name" style="margin-left:15px">Tên</div>
+                            <div class="col">Điểm</div>
+                            <div class="col">Thời gian</div>
+                        </div>
+                        <!-- list-group .// -->
+                        <div class="exam-item">
+                            <div class="row-content">
+                                <div class="col name top1"><span>🥇Thinh</span></div>
+                                <div class="col">10đ</div>
+                                <div class="col">2:26</div>
+                            </div>
+                        </div> <div class="exam-item">
+                            <div class="row-content">
+                                <div class="col name top2"><span>🥈Thinh</span></div>
+                                <div class="col">9đ</div>
+                                <div class="col">61:25</div>
+                            </div>
+                        </div> <div class="exam-item">
+                            <div class="row-content">
+                                <div class="col name top3"><span>🥉Thinh</span></div>
+                                <div class="col">8đ</div>
+                                <div class="col">62:47</div>
+                            </div>
+                        </div><a href="javascript:void(0)" class="btn gray" id="load-more">Xem thêm</a>
+                    </div>
+                </article> <div class="try-it-now p-0">
+
+                </div>
+                <div class="try-it-now">
+                    <a href="https://www.facebook.com/sharer.php?u=https://tracnghiem.net/thptqg/de-thi-thpt-qg-nam-2022-mon-toan-bo-gd-dt-ma-de-105-5691.html" class="btn facebook-btn social-btn">Chia sẻ Facebook</a>
+                </div>
+            </nav>
+
+
+
+        </div>
+    </div>
+</div>
+

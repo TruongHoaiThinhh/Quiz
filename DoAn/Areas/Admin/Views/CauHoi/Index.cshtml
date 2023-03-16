@@ -1,0 +1,108 @@
+﻿@model IEnumerable<DoAn.Models.CauHoi>
+
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<h2 style="text-align: center;">Quản lý câu hỏi</h2>
+
+<p class="btn btn-warning" style=" margin-left:10px;">
+    @Html.ActionLink("Thêm mới câu hỏi", "Them")
+</p>
+
+<div class="form-group">
+    <h4 style="margin-left:10px;">Bài</h4>
+    <div class="col-md-10">
+        <select class="form-select" id="filterByColor" onchange="searchFilter()">
+            <option value="" selected>Tất cả....</option>
+            @*  @foreach (var item in Model)
+                {
+
+
+                    <option value="@Html.DisplayFor(modelItem => item.Bai.BaiId)">@Html.DisplayFor(modelItem => item.Bai.TenBai)</option>
+                }*@
+            <option value="1">Đề Thi Thử THPT QG Năm 2022 Môn Toán</option>
+            <option value="4">Đề thi thử THPT QG năm 2022 môn Tiếng Anh</option>
+            <option value="5">Đề thi thử THPT QG năm 2022 môn Vật Lý</option>
+            <option value="6">Đề thi thử THPT QG năm 2022 môn Hóa học</option>
+            <option value="7">Đề thi thử THPT QG năm 2022 môn Sinh học</option>
+
+        </select>
+    </div>
+</div>
+
+
+<form method="post" enctype="multipart/form-data" style=" margin-left:10px; margin-bottom:10px">
+    <div id="export" style="display:none;">
+        <input name="file" type="file" required />
+        <button type="submit" class="btn btn-success">
+            Import Excel
+        </button>
+    </div>
+
+</form>
+
+
+<table class="table">
+    <tr>
+        <th>
+            <p>Câu hỏi</p>
+        </th>
+        <th>
+            <p>Bài</p>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="name @Html.DisplayFor(modelItem => item.Bai.BaiId)">
+            <td>
+                @Html.Raw(item.CauHoi1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bai.TenBai)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Sua", new { id = item.CauHoiId }) |
+                @Html.ActionLink("Xóa", "Xoa", new { id = item.CauHoiId })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<style>
+    .a {
+        color: white;
+    }
+</style>
+
+
+<script>
+    var searchFilter = () => {
+        let selectedColor = document.getElementById("filterByColor").value;
+        const input = document.querySelector(".form-control");
+        let textBox = input.value;
+        const cards = document.getElementsByClassName("name");
+        for (let i = 0; i < cards.length; i++) {
+            let title = cards[i].querySelector(".card-body");
+
+            // && title.innerText.toLowerCase().indexOf(textBox.toLowerCase()) > -1
+            if ((cards[i].classList.contains(selectedColor) || selectedColor == "")) {
+                cards[i].classList.remove("d-none");
+                document.getElementById('export').style.display = 'none';
+            } else {
+                cards[i].classList.add("d-none");
+            }
+            if (cards[i].classList.contains(selectedColor)) {
+                document.getElementById('export').style.display = 'block';
+            }
+        }
+    }
+</script>

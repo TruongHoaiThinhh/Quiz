@@ -1,0 +1,149 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+@model IEnumerable<DoAn.Models.LoaiBai>
+<link href="~/Content/Style.css" rel="stylesheet" />
+
+
+
+
+<div class="banner">
+    <div class="middle">
+        <h1>TRẮC NGHIỆM ONLINE</h1>
+        <p>ĐA DẠNG - THÔNG MINH - CHÍNH XÁC</p>
+    </div>
+</div>
+
+    <section class="featued-list" id="featued-list" style="height: auto !important;">
+        <div class="container" style="height: auto !important;">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-3 col-sm-12 relative hover-link">
+                    <div class="shadow-box">
+                        <div class="img"><img src="https://s.tracnghiem.net/assets/images/home/feature1.jpg" alt="Đề thi học kỳ"></div>
+                        <h3 class="title40Bold">Đề thi học kỳ</h3>
+                        <p>Ngân hàng câu hỏi đầy đủ các môn cấp 1,2,3 được trộn tạo đề theo cấu trúc phân loại giúp các em dễ dàng ôn tập online đề thi giữa học kỳ, thi học kỳ theo các chủ đề đã học.</p>
+                        <a href="@Url.Action("DanhMuc", "TracNghiem", new { id = 1 })" class="btn orange">Làm ngay</a>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-sm-12 relative hover-link" onclick="window.location.href='#'">
+                    <div class="shadow-box">
+                        <div class="img"><img src="https://s.tracnghiem.net/assets/images/home/feature2.jpg" alt="Đề thi THPT QG"></div>
+                        <h3>Đề thi THPT QG</h3>
+                        <p>Tổng hợp đề thi trắc nghiệm online THPT QG của các môn Toán, Tiếng Anh, Vật lý, Hóa học, Sinh học, Địa lý, Lịch sử, GDCD kèm đáp án và lời giải chi tiết.</p>
+                        <a href="@Url.Action("DanhMuc", "TracNghiem", new { id = 1 })" class="btn orange">Làm ngay</a>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-sm-12 relative hover-link" onclick="window.location.href='#'">
+                    <div class="shadow-box">
+                        <div class="img"><img src="https://s.tracnghiem.net/assets/images/home/feature3.jpg" alt="Đề kiểm tra"></div>
+                        <h3>Đề kiểm tra</h3>
+                        <p>
+                            Hệ thống bài kiểm tra 1 tiết, kiểm tra 15 phút được thiết kế theo hình thức trắc nghiệm online giúp học sinh có thể tạo ra đề tự luyện tập và chấm điểm trực tuyến.
+                        </p>
+                        <a href="@Url.Action("DanhMuc", "TracNghiem", new { id = 1 })" class="btn orange">Làm ngay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+<section class="lession-list no-padding-bottom" style="height: auto !important;">
+    <div class="bg relative l01 hover-link" onclick="window.location.href='#'">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6 col-sm-12">
+                    <div class="lession-box">
+                        <h2 class="title40Bold">Trắc nghiệm Tiếng Anh</h2>
+                        <p>Tổng hợp hàng ngàn câu trắc nghiệm Tiếng Anh Online và các đề thi chứng chỉ quốc tế TOEIC, TOEFL, IELTS giúp các bạn ôn luyện và đạt điểm tốt trong các kỳ thi Tiếng Anh.</p>
+                        <a href="#" class="btn orange">Làm ngay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="google-auto-placed" style="width: 100%; height: auto !important; clear: both; text-align: center;"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-0544800746257379" data-adsbygoogle-status="done" style="display: none !important; margin: 10px auto; background-color: transparent; height: 0px;" data-ad-status="unfilled"><ins id="aswift_3_expand" style="border: none; height: 0px; width: 1024px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-table;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_3_anchor" style="border: none; height: 0px; width: 1024px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: block; overflow: hidden; opacity: 0;"><iframe id="aswift_3" name="aswift_3" style="left:0;position:absolute;top:0;border:0;width:1024px;height:280px" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="1024" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" src="https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-0544800746257379&amp;output=html&amp;h=280&amp;adk=4271454672&amp;adf=2965115351&amp;pi=t.aa~a.2835427667~rp.4&amp;w=1024&amp;fwrn=4&amp;fwrnh=100&amp;lmt=1650882349&amp;rafmt=1&amp;to=qs&amp;pwprc=5681150659&amp;psa=1&amp;format=1024x280&amp;url=https%3A%2F%2Ftracnghiem.net%2F&amp;fwr=0&amp;pra=3&amp;rpe=1&amp;resp_fmts=3&amp;wgl=1&amp;fa=40&amp;adsid=ChEI8I2ZkwYQsvae4srG3vvVARI9AHBKnK37sSLVMZfDHvZAA706FtBCB6vGyBq-jAx8VvjWiRs0BaEOava-f70IAZDWQyH7JP1aQSUhy-Mfng&amp;uach=WyJXaW5kb3dzIiwiMTAuMC4wIiwieDg2IiwiIiwiOTkuMC40ODQ0Ljg0IixbXSxudWxsLG51bGwsIjY0IixbWyIgTm90IEE7QnJhbmQiLCI5OS4wLjAuMCJdLFsiQ2hyb21pdW0iLCI5OS4wLjQ4NDQuODQiXSxbIk9wZXJhIEdYIiwiOTkuMC40ODQ0Ljg0Il1dLGZhbHNlXQ..&amp;dt=1650882349604&amp;bpp=1&amp;bdt=965&amp;idt=-M&amp;shv=r20220420&amp;mjsv=m202204190101&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;cookie=ID%3Df67be6cf532f69b7-229cf72a60d1009d%3AT%3D1648356351%3ART%3D1648356351%3AS%3DALNI_MZxMJmxuTvQhanJ5X0uDiLRhgKQUw&amp;prev_fmts=0x0%2C690x280%2C690x280&amp;nras=4&amp;correlator=7586946274484&amp;frm=20&amp;pv=1&amp;ga_vid=986556045.1648356356&amp;ga_sid=1650882349&amp;ga_hid=1605105555&amp;ga_fc=1&amp;u_tz=420&amp;u_his=6&amp;u_h=1080&amp;u_w=1920&amp;u_ah=1040&amp;u_aw=1920&amp;u_cd=24&amp;u_sd=1&amp;dmc=8&amp;adx=0&amp;ady=2595&amp;biw=892&amp;bih=924&amp;scr_x=0&amp;scr_y=497&amp;eid=44759875%2C44759926%2C44759837%2C44761792%2C21066429%2C31065742%2C31067204&amp;oid=2&amp;psts=AGkb-H85yFnB9q7Kbfo0oG8xCtFSZ6YOm1GpACl4y6Wyngqfa1DzZsqqCj_iR0DPR52mcgMVeS_gsyPbvyq7KqgW7A&amp;pvsid=1796479154780873&amp;pem=965&amp;tmod=786866190&amp;uas=0&amp;nvt=1&amp;ref=https%3A%2F%2Fwww.google.com%2F&amp;eae=0&amp;fc=1920&amp;brdim=0%2C0%2C0%2C0%2C1920%2C0%2C1920%2C1040%2C907%2C939&amp;vis=1&amp;rsz=%7C%7Cs%7C&amp;abl=NS&amp;fu=1152&amp;bc=31&amp;jar=2022-04-25-10&amp;ifi=4&amp;uci=a!4&amp;btvi=2&amp;fsb=1&amp;xpc=irrvdLf3OE&amp;p=https%3A//tracnghiem.net&amp;dtd=35" data-google-container-id="a!4" data-google-query-id="CIuWp4CAr_cCFRB2vAodhpULsQ" data-load-complete="true"></iframe></ins></ins></ins></div>
+    <div class="bg1 white l02 hover-link" onclick="window.location.href='#'">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6 col-sm-12" style=" background: url(https://s.tracnghiem.net/assets/images/home/lession2.jpg) no-repeat;">
+                    <div class="center bg-lession"></div>
+                </div>
+                <div class="col-12 col-lg-6 col-sm-12">
+                    <div class="lession-box" ">
+                        <h2 class="title40Bold">Trắc nghiệm IT</h2>
+                        <p>Hệ thống các bài trắc nghiệm online về tin học văn phòng, tin học cơ bản, lập trình, quản trị hệ thống, chứng chỉ quốc tế giúp các bạn ôn luyện và thi các chứng chỉ về CNTT.</p>
+                        <div class="center bg-lession mb"></div>
+                        <a href="#" class="btn orange">Làm ngay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><div class="google-auto-placed" style="width: 100%; height: auto !important; clear: both; text-align: center;"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-0544800746257379" data-adsbygoogle-status="done" style="display: none !important; margin: 10px auto; background-color: transparent; height: 0px;" data-ad-status="unfilled"><ins id="aswift_4_expand" style="border: none; height: 0px; width: 1024px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-table;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_4_anchor" style="border: none; height: 0px; width: 1024px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: block; overflow: hidden; opacity: 0;"><iframe id="aswift_4" name="aswift_4" style="left:0;position:absolute;top:0;border:0;width:1024px;height:280px" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="1024" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" src="https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-0544800746257379&amp;output=html&amp;h=280&amp;adk=4271454672&amp;adf=3301942511&amp;pi=t.aa~a.3759157937~rp.4&amp;w=1024&amp;fwrn=4&amp;fwrnh=100&amp;lmt=1650882349&amp;rafmt=1&amp;to=qs&amp;pwprc=5681150659&amp;psa=1&amp;format=1024x280&amp;url=https%3A%2F%2Ftracnghiem.net%2F&amp;fwr=0&amp;pra=3&amp;rpe=1&amp;resp_fmts=3&amp;wgl=1&amp;fa=40&amp;adsid=ChEI8I2ZkwYQsvae4srG3vvVARI9AHBKnK37sSLVMZfDHvZAA706FtBCB6vGyBq-jAx8VvjWiRs0BaEOava-f70IAZDWQyH7JP1aQSUhy-Mfng&amp;uach=WyJXaW5kb3dzIiwiMTAuMC4wIiwieDg2IiwiIiwiOTkuMC40ODQ0Ljg0IixbXSxudWxsLG51bGwsIjY0IixbWyIgTm90IEE7QnJhbmQiLCI5OS4wLjAuMCJdLFsiQ2hyb21pdW0iLCI5OS4wLjQ4NDQuODQiXSxbIk9wZXJhIEdYIiwiOTkuMC40ODQ0Ljg0Il1dLGZhbHNlXQ..&amp;dt=1650882349604&amp;bpp=1&amp;bdt=965&amp;idt=2&amp;shv=r20220420&amp;mjsv=m202204190101&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;cookie=ID%3Df67be6cf532f69b7-229cf72a60d1009d%3AT%3D1648356351%3ART%3D1648356351%3AS%3DALNI_MZxMJmxuTvQhanJ5X0uDiLRhgKQUw&amp;prev_fmts=0x0%2C690x280%2C690x280%2C1024x280&amp;nras=5&amp;correlator=7586946274484&amp;frm=20&amp;pv=1&amp;ga_vid=986556045.1648356356&amp;ga_sid=1650882349&amp;ga_hid=1605105555&amp;ga_fc=1&amp;u_tz=420&amp;u_his=6&amp;u_h=1080&amp;u_w=1920&amp;u_ah=1040&amp;u_aw=1920&amp;u_cd=24&amp;u_sd=1&amp;dmc=8&amp;adx=0&amp;ady=3477&amp;biw=892&amp;bih=924&amp;scr_x=0&amp;scr_y=497&amp;eid=44759875%2C44759926%2C44759837%2C44761792%2C21066429%2C31065742%2C31067204&amp;oid=2&amp;psts=AGkb-H85yFnB9q7Kbfo0oG8xCtFSZ6YOm1GpACl4y6Wyngqfa1DzZsqqCj_iR0DPR52mcgMVeS_gsyPbvyq7KqgW7A&amp;pvsid=1796479154780873&amp;pem=965&amp;tmod=786866190&amp;uas=0&amp;nvt=1&amp;ref=https%3A%2F%2Fwww.google.com%2F&amp;eae=0&amp;fc=1920&amp;brdim=0%2C0%2C0%2C0%2C1920%2C0%2C1920%2C1040%2C907%2C939&amp;vis=1&amp;rsz=%7C%7Cs%7C&amp;abl=NS&amp;fu=1152&amp;bc=31&amp;jar=2022-04-25-10&amp;ifi=5&amp;uci=a!5&amp;btvi=3&amp;fsb=1&amp;xpc=cJUGXXzPLN&amp;p=https%3A//tracnghiem.net&amp;dtd=41" data-google-container-id="a!5" data-google-query-id="CImwp4CAr_cCFQWvvAodChYBWA" data-load-complete="true"></iframe></ins></ins></ins></div>
+</section>
+
+<section class="invision-plan" style="background: url(https://s.tracnghiem.net/assets/images/home/invision-bg.jpg) no-repeat; width: 100%; height: 100%; background-size: cover; ">
+    <div class="container relative">
+        <h2 class="title40Bold center-title"><span>ĐỊNH HƯỚNG</span> <span>TƯƠNG LAI</span></h2>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-6 col-sm-12 col-custom-padding hover-link" onclick="window.location.href='#'">
+                <div class="shadow-box">
+                    <div class="img"><img src="https://s.tracnghiem.net/assets/images/home/dinhhuong1.jpg" alt="Đại học"></div>
+                    <h3 class="title33Bold">Đại học</h3>
+                    <p>Ngân hàng câu hỏi trắc nghiệm online đầy đủ các môn học đại cuơng, môn học chuyên ngành giúp các bạn Sinh viên ôn thi kết thúc học phần/tín chỉ ở trường ĐH-CĐ đạt kết quả tốt.</p>
+                    <a href="#" class="btn orange">Làm ngay</a>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 col-sm-12 col-custom-padding hover-link" onclick="window.location.href='#'">
+                <div class="shadow-box">
+                    <div class="img"><img src="https://s.tracnghiem.net/assets/images/home/dinhhuong2.jpg" alt="Hướng nghiệp"></div>
+                    <h3 class="title33Bold">Hướng nghiệp</h3>
+                    <p>Hệ thống ngân hàng câu hỏi và các bài thi trắc nghiệm về nghề nghiệp như ôn thi bằng lái xe, trắc nghiệm công viên chức, trắc nghiệm tính cách, MBTI Test, IQ/EQ Test.</p>
+                    <a href="#" class="btn orange">Làm ngay</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="smart-testing">
+    <div class="container">
+        <h2 class="title40Bold center-title"><span>TRẮC NGHIỆM</span><span> THÔNG MINH</span></h2>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-3 col-sm-4 col-custom-padding">
+                <div class="smart-box">
+                    <div class="green-rect"><img src="https://s.tracnghiem.net/assets/images/home/smart1.png" alt="Đa dạng nội dung"></div>
+                    <h3 class="title25Bold">Đa dạng nội dung</h3>
+                    <p>Cung cấp đa dạng nội dung các câu hỏi trắc nghiệm thuộc nhiều lĩnh vực khác nhau</p>
+                </div>
+            </div>
+            <div class="col-12 col-1dot4">
+                <div class="green-line"></div>
+            </div>
+            <div class="col-12 col-lg-3 col-sm-4 col-custom-padding">
+                <div class="smart-box">
+                    <div class="green-rect"><img src="https://s.tracnghiem.net/assets/images/home/smart2.png" alt="Ma trận câu hỏi"></div>
+                    <h3 class="title25Bold">Ma trận câu hỏi</h3>
+                    <p>Hệ thống sẽ dựa vào ma trận câu hỏi phong phú để tự tổng hợp thành đề trắc nghiệm</p>
+                </div>
+            </div>
+            <div class="col-12 col-1dot4">
+                <div class="green-line"></div>
+            </div>
+            <div class="col-12 col-lg-3 col-sm-4 col-custom-padding last">
+                <div class="smart-box">
+                    <div class="green-rect"><img src="https://s.tracnghiem.net/assets/images/home/smart3.png" alt="Đáp án chi tiết"></div>
+                    <h3 class="title25Bold">Đáp án chi tiết</h3>
+                    <p>Sau khi hoàn thành bài kiểm tra trắc nghiệm hệ thống sẽ thông báo số điểm đạt được kèm lời giải chi tiết</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

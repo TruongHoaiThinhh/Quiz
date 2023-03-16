@@ -1,0 +1,39 @@
+﻿@model DoAn.Models.CauHoi
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="text-align: center;">Xóa Câu Hỏi</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal" style="text-align: center;">
+        <dt>
+            <p>Câu hỏi</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CauHoi1)
+        </dd>
+
+        <dt>
+            <p>Bài</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bai.TenBai)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="text-align: center;">
+            <input type="submit" value="Xóa" class="btn btn-danger" /> |
+            @Html.ActionLink("Trở về danh sách", "Index")
+        </div>
+    }
+</div>

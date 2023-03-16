@@ -1,0 +1,359 @@
+﻿@model IQueryable<DoAn.ModelsView.ViewModels.CauHoiVM>
+
+@{
+    int count = 1, countR = 0;
+}
+
+<style>
+    .the-answer-box {
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        -khtml-border-radius: 5px;
+        background: #f6f6f6;
+        margin-top: 16px;
+    }
+
+        .the-answer-box .answer-header {
+            background: #e6e6e6;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        .the-answer-box .answer-header, .the-answer-box .answer-result {
+            padding: 0 16px;
+        }
+
+            .the-answer-box .answer-header h2 {
+                font-family: "Nunito",sans-serif;
+                font-size: 18px;
+                line-height: 1.1;
+                font-weight: 700;
+                color: #f4511e;
+                width: 50%;
+                display: inline-block;
+            }
+
+        .the-answer-box .answer-result {
+            padding-top: 27px;
+            padding-bottom: 34px;
+        }
+
+            .the-answer-box .answer-result p {
+                font-family: "Nunito", sans-serif;
+                font-size: 16px;
+                line-height: 22px;
+                font-weight: 400;
+                padding-bottom: 8px;
+            }
+
+    .userConnected {
+    }
+</style>
+
+<div class="container">
+
+
+    <div class="userConnected" style="border: 2px solid #bdbdbd; border-radius: 10px; margin-top: 3%; margin-top: 100px; ">
+
+        @using DoAn.ModelsView
+        @{ DoAn.ModelsView.ViewModels.UserVM userConnected = Session["UserConnected"] as DoAn.ModelsView.ViewModels.UserVM;
+            DoAn.ModelsView.ViewModels.BaiVM quizSelected = Session["ChonBai"] as DoAn.ModelsView.ViewModels.BaiVM; }
+
+
+        <div class="row">
+
+
+            <div class="col-md-4" style="margin-top: 15px; margin-bottom: 15px; margin-left: 15px; ">
+
+                @if (quizSelected != null && !string.IsNullOrEmpty(quizSelected.TenBai))
+                {
+                    <span><b style="display: flex; alihn-content: center">Bài Đang Làm:</b> @quizSelected.TenBai</span>
+                    <hr />
+                    <span><b style="display: flex; alihn-content: center; color:green; display:none;" id="hienthiketquadung">Số Câu Đúng: <span id="socaudung"></span></b></span>
+                    <span><b style="display: flex; alihn-content: center; color: red; display: none;" id="hienthiketquasai">Số Câu Sai:  <span id="socausai"></span></b></span>
+                    <span><b style="display: flex; alihn-content: center; color: orange; display:none;" id="hienthithoigianlambai">Thời gian làm bài:  <span id="count_up_timer"> 00:00</span></b></span>}
+
+                else
+                {
+                    <span><b style="display: flex; alihn-content: center">Bài Đang Làm:</b></span>}
+
+            </div>
+            <hr />
+            <div class="col-md-2" style="margin-top: 15px; display: none;" id="diem">
+                <h2 style="text-align: center;">Điểm</h2>
+                <h2 style="text-align: center;" id="sodiem"></h2>
+            </div>
+            <hr />
+            <div id="thoigianlambai" class="col-md-4" style="margin-top: 15px; position: fixed; margin-left: 48%; font-size:30px;">
+                <b>Thời gian Làm Bài Còn Lại:</b>
+                <div class="time-remain">
+                    <div class="time" id="time">
+                        <i class="fa fa-clock-o" aria-hidden="true"></i><span id="timer" style="font-size: 30px;">90:00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="Quiz">
+
+        <h4 style="margin-top: 4%;"> <span class="label label-info">Câu hỏi :</span> </h4>
+        <a href="javascript:void(0)" id="ketqua" style="display:none;">A</a>
+        @if (Model != null && Model.Any())
+        {
+
+            foreach (var question in Model)
+            {
+                <div class="BlockQ" style="border: 1px solid #bdbdbd; width: 75%; border-radius: 10px; margin-top: 40px; background-color: #ffffff; padding: 8px;">
+
+                    <div class="Question" style="padding-top: 2%; padding-left: 2%; padding-right: 2%; padding-bottom: 0%; ">
+                        <span class="label label-warning" style="margin-bottom: 5px; font-size: 15px;"> @string.Format("{0}{1}.", "Câu ", count)</span>
+                        <span id="@string.Format("{0}{1}", "ID_Q", count)" style="display:none;">@question.CauHoiId</span>
+                        <p style="padding-top: 2%; font-size: 18px; font-weight: bold; " id="@string.Format("{0}{1}", "Câu  ", count)"> @Html.Raw(question.CauHoi) </p>
+                    </div>
+
+                    <div class="Choices" style="margin-left: 8%;">
+
+                        @foreach (var choice in question.DapAn)
+                        {
+                            <label class="radio-inline" style="font-size: 18px; margin-bottom: 10px; display: table-cell; vertical-align: middle; height: 40px;">
+                                <input type="radio" name="@string.Format("{0}{1}", "inlineRadioOptions",count)" id="@string.Format("{0}{1}", "inlineRadio", countR)" value="@Html.Raw(choice.DapAn)" style="margin-left: -16px; height:auto; width:auto"> @Html.Raw(choice.DapAn)
+                            </label><br />countR++;
+                        }
+
+                    </div> <!--END Choices-->
+
+                    <div id="@string.Format("{0}{1}{2}", "Ans","Q", count)">
+
+
+                    </div>
+
+                    <div id="@string.Format("{0}{1}{2}", "Giai","Q", count)" style="display:none;">
+                        <div class="the-answer-box">
+                            <div class="answer-header">
+                                <h2>Lời giải:</h2>
+                            </div>
+                            <div class="answer-result">
+                                <p>
+                                    TXĐ&nbsp;: <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-6-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>D</mi><mo>=</mo><mrow class=&quot;MJX-TeXAtom-ORD&quot;><mi mathvariant=&quot;double-struck&quot;>R</mi></mrow></math>" role="presentation" style="font-size: 96%; position: relative;"><span id="MJXc-Node-67" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-68" class="mjx-mrow"><span id="MJXc-Node-69" class="mjx-mi"></span><span id="MJXc-Node-70" class="mjx-mo MJXc-space3"></span><span id="MJXc-Node-71" class="mjx-texatom MJXc-space3"><span id="MJXc-Node-72" class="mjx-mrow"><span id="MJXc-Node-73" class="mjx-mi"></span></span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>D</mi><mo>=</mo><mrow class="MJX-TeXAtom-ORD"><mi mathvariant="double-struck">R</mi></mrow></math></span></span>
+                                    <script type="math/tex" id="MathJax-Element-6">D = \mathbb{R}</script>
+                                </p>
+
+                                <p>
+                                    Ta có <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-7-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><msup><mi>y</mi><mo>&amp;#x2032;</mo></msup><mo>=</mo><mn>3</mn><mrow class=&quot;MJX-TeXAtom-ORD&quot;><msup><mi>x</mi><mn>2</mn></msup></mrow><mo>+</mo><mn>6</mn><mi>x</mi><mo>&amp;#x2212;</mo><mn>9</mn></math>" role="presentation" style="font-size: 96%; position: relative;"><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi>y</mi><mo>′</mo></msup><mo>=</mo><mn>3</mn><mrow class="MJX-TeXAtom-ORD"><msup><mi>x</mi><mn>2</mn></msup></mrow><mo>+</mo><mn>6</mn><mi>x</mi><mo>−</mo><mn>9</mn></math></span></span>
+                                    <script type="math/tex" id="MathJax-Element-7">y' = 3{x^2} + 6x - 9</script>
+                                </p>
+
+                                <p>
+                                    +) <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-8-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><msup><mi>y</mi><mo>&amp;#x2032;</mo></msup><mo>&amp;gt;</mo><mn>0</mn><mo stretchy=&quot;false&quot;>&amp;#x21D4;</mo><mn>3</mn><mrow class=&quot;MJX-TeXAtom-ORD&quot;><msup><mi>x</mi><mn>2</mn></msup></mrow><mo>+</mo><mn>6</mn><mi>x</mi><mo>&amp;#x2212;</mo><mn>9</mn><mo>&amp;gt;</mo><mn>0</mn><mo stretchy=&quot;false&quot;>&amp;#x21D4;</mo><mrow><mo>[</mo><mtable columnalign=&quot;left&quot; rowspacing=&quot;4pt&quot; columnspacing=&quot;1em&quot;><mtr><mtd><mi>x</mi><mo>&amp;gt;</mo><mn>1</mn></mtd></mtr><mtr><mtd><mi>x</mi><mo>&amp;lt;</mo><mo>&amp;#x2212;</mo><mn>3</mn></mtd></mtr></mtable><mo fence=&quot;true&quot; stretchy=&quot;true&quot; symmetric=&quot;true&quot;></mo></mrow></math>" role="presentation" style="font-size: 96%; position: relative;"><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi>y</mi><mo>′</mo></msup><mo>&gt;</mo><mn>0</mn><mo stretchy="false">⇔</mo><mn>3</mn><mrow class="MJX-TeXAtom-ORD"><msup><mi>x</mi><mn>2</mn></msup></mrow><mo>+</mo><mn>6</mn><mi>x</mi><mo>−</mo><mn>9</mn><mo>&gt;</mo><mn>0</mn><mo stretchy="false">⇔</mo><mrow><mo>[</mo><mtable columnalign="left" rowspacing="4pt" columnspacing="1em"><mtr><mtd><mi>x</mi><mo>&gt;</mo><mn>1</mn></mtd></mtr><mtr><mtd><mi>x</mi><mo>&lt;</mo><mo>−</mo><mn>3</mn></mtd></mtr></mtable><mo fence="true" stretchy="true" symmetric="true"></mo></mrow></math></span></span>
+                                    <script type="math/tex" id="MathJax-Element-8">y' > 0 \Leftrightarrow 3{x^2} + 6x - 9 > 0 \Leftrightarrow \left[ \begin{array}{l}x > 1\\x <&nbsp; - 3\end{array} \right.</script>&nbsp; hay hàm số đồng biến trên <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-9-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mrow><mo>(</mo><mrow class=&quot;MJX-TeXAtom-ORD&quot;><mo>&amp;#x2212;</mo><mi mathvariant=&quot;normal&quot;>&amp;#x221E;</mi><mo>;</mo><mo>&amp;#x2212;</mo><mn>3</mn></mrow><mo>)</mo></mrow><mo>;</mo><mspace width=&quot;thinmathspace&quot; /><mrow><mo>(</mo><mrow class=&quot;MJX-TeXAtom-ORD&quot;><mn>1</mn><mo>;</mo><mo>+</mo><mi mathvariant=&quot;normal&quot;>&amp;#x221E;</mi></mrow><mo>)</mo></mrow></math>" role="presentation" style="font-size: 96%; position: relative;"><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>(</mo><mrow class="MJX-TeXAtom-ORD"><mo>−</mo><mi mathvariant="normal">∞</mi><mo>;</mo><mo>−</mo><mn>3</mn></mrow><mo>)</mo></mrow><mo>;</mo><mspace width="thinmathspace"></mspace><mrow><mo>(</mo><mrow class="MJX-TeXAtom-ORD"><mn>1</mn><mo>;</mo><mo>+</mo><mi mathvariant="normal">∞</mi></mrow><mo>)</mo></mrow></math></span></span>
+                                    <script type="math/tex" id="MathJax-Element-9">\left( { - \infty ; - 3} \right);\,\left( {1; + \infty } \right)</script>
+                                </p>
+
+                                <p>
+                                    +) <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-10-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><msup><mi>y</mi><mo>&amp;#x2032;</mo></msup><mo>&amp;lt;</mo><mn>0</mn><mo stretchy=&quot;false&quot;>&amp;#x21D4;</mo><mn>3</mn><mrow class=&quot;MJX-TeXAtom-ORD&quot;><msup><mi>x</mi><mn>2</mn></msup></mrow><mo>+</mo><mn>6</mn><mi>x</mi><mo>&amp;#x2212;</mo><mn>9</mn><mo>&amp;lt;</mo><mn>0</mn><mo stretchy=&quot;false&quot;>&amp;#x21D4;</mo><mo>&amp;#x2212;</mo><mn>3</mn><mo>&amp;lt;</mo><mi>x</mi><mo>&amp;lt;</mo><mn>1</mn></math>" role="presentation" style="font-size: 96%; position: relative;"><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi>y</mi><mo>′</mo></msup><mo>&lt;</mo><mn>0</mn><mo stretchy="false">⇔</mo><mn>3</mn><mrow class="MJX-TeXAtom-ORD"><msup><mi>x</mi><mn>2</mn></msup></mrow><mo>+</mo><mn>6</mn><mi>x</mi><mo>−</mo><mn>9</mn><mo>&lt;</mo><mn>0</mn><mo stretchy="false">⇔</mo><mo>−</mo><mn>3</mn><mo>&lt;</mo><mi>x</mi><mo>&lt;</mo><mn>1</mn></math></span></span>
+                                    <script type="math/tex" id="MathJax-Element-10">y' < 0 \Leftrightarrow 3{x^2} + 6x - 9 < 0 \Leftrightarrow&nbsp; - 3 < x < 1</script> hay hàm số nghịch biến trên <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-11-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mrow><mo>(</mo><mrow class=&quot;MJX-TeXAtom-ORD&quot;><mo>&amp;#x2212;</mo><mn>3</mn><mo>;</mo><mn>1</mn></mrow><mo>)</mo></mrow></math>" role="presentation" style="font-size: 96%; position: relative;"><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>(</mo><mrow class="MJX-TeXAtom-ORD"><mo>−</mo><mn>3</mn><mo>;</mo><mn>1</mn></mrow><mo>)</mo></mrow></math></span></span>
+                                    <script type="math/tex" id="MathJax-Element-11">\left( { - 3;1} \right)</script>
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <!-- END BlockQ --> count++;
+
+            }
+
+            <span id="countQuections" style="display:none;">@count</span>
+            <button type="button" onclick="location.href='http://google.com';" id="SubmitQuiz" class="btn btn-default" style="margin-top: 10px;"><span class="glyphicon glyphicon-ok"></span> Nộp Bài</button>}
+
+    </div> <!-- END QUIZ -->
+
+</div> <!-- END CONTAINER -->
+
+
+
+@section MyScritps
+{
+
+    <script type="text/javascript">
+
+        var timerVariable = setInterval(countUpTimer, 1000);
+        var totalSeconds = 0;
+
+        function countUpTimer() {
+            ++totalSeconds;
+            var hour = Math.floor(totalSeconds / 3600);
+            var minute = Math.floor((totalSeconds - hour * 3600) / 60);
+            var seconds = totalSeconds - (hour * 3600 + minute * 60);
+            document.getElementById("count_up_timer").innerHTML = minute + " Phút " + seconds + " Giây";
+        }
+
+        document.getElementById("SubmitQuiz").onclick = function () {
+
+            clearInterval(timerVariable);
+            document.getElementById('hienthithoigianlambai').style.display = 'block';
+            document.body.scrollTop = 0;
+            document.getElementById('SubmitQuiz').style.display = 'none';
+            document.getElementById('thoigianlambai').style.display = 'none';
+
+        }
+
+
+        $(document).ready(function () {
+
+            $('#SubmitQuiz').on('click', function () {
+
+                //count Questions
+                var sel = $('#countQuections').text();
+
+
+                console.log(sel);
+
+                var ketquacautracnghiem = [], countQuestion = parseInt(sel), question = {}, j = 1;
+
+                for (var i = 1; i < countQuestion; i++) {
+
+
+
+                    question = {
+                        CauHoiId: $('#ID_Q' + i).text(),
+                        CauHoi: $('#Câu ' + i).text(),
+                        DapAnQ: $('input[name=inlineRadioOptions' + i + ']:checked').val()
+                    }
+
+                    ketquacautracnghiem.push(question);
+
+                }
+
+
+                $.ajax({
+
+
+                    type: 'POST',
+                    url: '@Url.Action("LamBai", "TracNghiem")',
+                    data: { ketquacautracnghiem },
+
+                    success: function (response) {
+                        var socaudung = 0;
+                        var socausai = 0;
+                        var sodiem = 0;
+
+                        if (response.ketqua.length > 0)
+                        {
+                            for (var i = 0; i < response.ketqua.length; i++ )
+                            {
+
+                                if(response.ketqua[i].isCorrect == true)
+                                {
+                                    $('#AnsQ' + j).html('<div class="alert alert-success" role="alert"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Bạn đã chọn đúng<a href="javascript:void(0)" id="loigiai"> Xem lời giải<a/> </div>');
+                                    document.getElementById("loigiai").onclick = function () {
+
+                                        document.getElementById('GiaiQ1').style.display = 'block';
+                                    }
+                                    socaudung++;
+                                    sodiem = sodiem + 0.4;
+
+
+                                }
+                                else
+                                {
+                                    $('#AnsQ' + j).html('<div class="alert alert-danger" role="alert"> <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> Bạn đã chọn sai - Đáp án đúng là <b>' + response.ketqua[i].DapAnQ + '</b><a  href="javascript:void(0)" id="loigiai"> Xem lời giải<a/></div>');
+                                    document.getElementById("loigiai").onclick = function () {
+
+                                        document.getElementById('GiaiQ1').style.display = 'block';
+                                    }
+
+
+                                    socausai++;
+                                }
+                                j++;
+                                document.getElementById("ketqua").onclick = function () {
+
+                                    document.getElementById('hienthiketquadung').style.display = 'block';
+                                    document.getElementById('hienthiketquasai').style.display = 'block';
+                                    document.getElementById('diem').style.display = 'block';
+                                    document.getElementById('sodiem').innerHTML = sodiem;
+                                    document.getElementById('socaudung').innerHTML = socaudung;
+                                    document.getElementById('socausai').innerHTML = socausai;
+                                }
+                                document.getElementById('ketqua').click();
+                            }
+
+
+
+
+                        }
+                        else
+                        {
+                            alert("Something Wrong");
+                        }
+
+                        //console.log(response.result.length);
+
+                    },
+                    error: function (response) {
+
+                    }
+
+                });
+                console.log(ketquacautracnghiem);
+
+            });
+
+
+
+
+        });
+
+
+
+
+    function checkSecond(sec) {
+        if (sec < 10 && sec >= 0) {
+            sec = "0" + sec
+        }
+        ; // add zero in front of numbers < 10
+        if (sec < 0) {
+            sec = "59"
+        }
+        ;
+        return sec;
+    }
+
+    function createTimer() {
+        var presentTime = $('#timer').html();
+        if (presentTime) {
+            var timeArray = presentTime.split(/[:]+/);
+            var m = timeArray[0];
+            var s = checkSecond((timeArray[1] - 1));
+            if (s == 59) {
+                m = m - 1
+            }
+            if (m < 0) {
+                alert('Hết thời gian làm bài. Hệ thống sẽ tự động nộp bài');
+                document.getElementById('SubmitQuiz').click();
+                $('#timer').html("00:00");
+            } else {
+                $('#timer').html(m + ":" + s);
+                //console.log(m, s)
+                setTimeout(createTimer, 1000);
+            }
+        }
+    }
+
+    $(document).ready(function () {
+        createTimer();
+    });
+
+
+
+
+    </script>
+
+}
+
+
+
